@@ -7,66 +7,83 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-    --bg-color: #0a0a0a;
-    --purple: #9b59b6;
+    --bg: radial-gradient(circle at top left, #0a0a0a 0%, #1a0a1a 100%);
+    --purple: #a26bff;
     --white: #fff;
-    --glass: rgba(25,25,25,0.55);
-    --glass-hover: rgba(25,25,25,0.65);
-    --card-border: rgba(255,255,255,0.05);
-    --shadow: rgba(0,0,0,0.5);
-    --trans: 0.3s ease;
+    --glass: rgba(255, 255, 255, 0.08);
+    --border: rgba(255, 255, 255, 0.2);
+    --highlight: rgba(162, 107, 255, 0.4);
+    --shadow: rgba(0, 0, 0, 0.6);
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     scrollbar-width: none;
-    -ms-overflow-style: none;
 }
-*::-webkit-scrollbar { width: 0; height: 0; }
+*::-webkit-scrollbar { display: none; }
 
 body {
-    background: var(--bg-color);
+    background: var(--bg);
     color: var(--white);
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
-a { text-decoration: none; color: inherit; }
+/* Glass panel base */
+.glass {
+    background: var(--glass);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px var(--shadow);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
+}
+.glass:hover {
+    background: rgba(255,255,255,0.12);
+    box-shadow: 0 12px 40px rgba(162,107,255,0.15);
+    border-color: var(--highlight);
+}
 
+/* Header */
 header {
-    width: 100%;
-    padding: 1rem 3rem;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--card-border);
-    transition: var(--trans);
+    z-index: 10;
 }
-header h1 { font-size: 2rem; font-weight: 700; }
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--white);
+}
 header h1 span { color: var(--purple); }
-
-nav a { margin-left: 2rem; font-weight: 600; position: relative; }
+nav a {
+    color: var(--white);
+    margin-left: 2rem;
+    position: relative;
+    font-weight: 600;
+}
 nav a::after {
-    content: '';
+    content: "";
     position: absolute;
     width: 0;
     height: 2px;
-    bottom: -3px;
     left: 0;
-    background-color: var(--purple);
-    transition: width 0.3s;
+    bottom: -3px;
+    background: var(--purple);
+    transition: width 0.3s ease;
 }
 nav a:hover::after { width: 100%; }
 
+/* Hero Section */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -74,69 +91,90 @@ nav a:hover::after { width: 100%; }
     justify-content: center;
     align-items: center;
     text-align: center;
-    padding: 0 2rem;
     position: relative;
-    background: var(--bg-color);
+    z-index: 1;
 }
-.hero h2 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; color: var(--purple); }
-.hero p { font-size: 1.2rem; color: #ccc; margin-bottom: 2rem; }
-
+.hero h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--white);
+    text-shadow: 0 0 20px rgba(162, 107, 255, 0.5);
+}
+.hero p {
+    font-size: 1.2rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 2rem;
+}
 .hero .btn-group {
     display: flex;
     gap: 1rem;
 }
 .hero a {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--purple);
-    color: var(--white);
-    border: none;
-    padding: 1rem 2rem;
-    border-radius: 16px;
-    font-weight: 600;
-    transition: all var(--trans);
-}
-.hero a:hover { transform: scale(1.05); background: #7d3ea6; }
-
-section { padding: 6rem 2rem; }
-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; color: var(--purple); }
-
-.cards, .showcase { display: grid; gap: 2rem; }
-.cards { grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); }
-.showcase { grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); }
-
-.card {
     background: var(--glass);
-    backdrop-filter: blur(12px);
-    border-radius: 20px;
-    padding: 2rem;
-    border: 1px solid var(--card-border);
-    box-shadow: 0 8px 32px var(--shadow);
-    text-align: center;
-    transition: all var(--trans);
-}
-.card:hover { background: var(--glass-hover); transform: translateY(-10px); }
-.card svg { width: 40px; height: 40px; margin-bottom: 1rem; fill: var(--purple); }
-
-.showcase img {
-    width: 100%;
-    border-radius: 20px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 1rem 2rem;
+    color: var(--white);
+    font-weight: 600;
     transition: all 0.3s ease;
 }
-.showcase img:hover { transform: scale(1.05); }
+.hero a:hover {
+    background: rgba(162, 107, 255, 0.15);
+    border-color: var(--purple);
+    transform: scale(1.05);
+}
 
+/* Sections */
+section {
+    padding: 6rem 2rem;
+    position: relative;
+    z-index: 2;
+}
+section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    color: var(--purple);
+    margin-bottom: 3rem;
+}
+
+/* Cards */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+.card {
+    text-align: center;
+    padding: 2rem;
+}
+.card svg {
+    width: 48px;
+    height: 48px;
+    fill: var(--purple);
+    margin-bottom: 1rem;
+}
+
+/* Footer */
 footer {
     text-align: center;
     padding: 2rem;
-    color: #999;
-    background: var(--glass);
-    backdrop-filter: blur(12px);
-    border-top: 1px solid var(--card-border);
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(10px);
 }
-footer a { color: var(--purple); font-weight: 600; }
 
-#bgCanvas { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+/* Background Canvas */
+#bgCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
 </style>
 <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -144,7 +182,7 @@ footer a { color: var(--purple); font-weight: 600; }
 
 <canvas id="bgCanvas"></canvas>
 
-<header>
+<header class="glass">
     <h1>advantage<span>.wtf</span></h1>
     <nav>
         <a href="#products">Products</a>
@@ -153,33 +191,29 @@ footer a { color: var(--purple); font-weight: 600; }
     </nav>
 </header>
 
-<div class="hero">
+<section class="hero">
     <h2>Play Smarter</h2>
     <p>Tools that give you the edge.</p>
     <div class="btn-group">
-        <a href="#products">
-            <i data-lucide="compass"></i> Explore
-        </a>
-        <a href="https://discord.gg/mUwbMhGf" target="_blank">
-            <i data-lucide="check"></i> Join Us
-        </a>
+        <a href="#products"><i data-lucide="compass"></i> Explore</a>
+        <a href="https://discord.gg/mUwbMhGf" target="_blank"><i data-lucide="check"></i> Join Us</a>
     </div>
-</div>
+</section>
 
 <section id="products">
     <h2>Products</h2>
     <div class="cards">
-        <div class="card">
+        <div class="card glass">
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
             <h3>Minecraft</h3>
             <p>Fast, safe, and smooth cheats for Minecraft.</p>
         </div>
-        <div class="card">
+        <div class="card glass">
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
             <h3>CS2</h3>
             <p>Play for months without getting caught.</p>
         </div>
-        <div class="card">
+        <div class="card glass">
             <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
             <h3>Coming Soon</h3>
             <p>Exciting new tools on the way.</p>
@@ -189,54 +223,61 @@ footer a { color: var(--purple); font-weight: 600; }
 
 <section id="showcase">
     <h2>Showcase</h2>
-    <div class="showcase">
-        <center><h3>COMING SOON</h3></center>
+    <div class="glass" style="padding: 3rem; text-align: center;">
+        <h3>COMING SOON</h3>
     </div>
 </section>
 
 <section id="contact">
     <h2>Contact</h2>
-    <p style="text-align:center; max-width:600px; margin:0 auto 2rem auto;">Have questions? Reach out.</p>
-    <div style="text-align:center;">
-        <a href="https://discord.gg/mUwbMhGf">discord.gg/advantage</a>
+    <div class="glass" style="max-width: 500px; margin: 0 auto; padding: 2rem; text-align: center;">
+        <p>Have questions? Reach out.</p>
+        <a href="https://discord.gg/mUwbMhGf" style="color: var(--purple); font-weight:600;">discord.gg/advantage</a>
     </div>
 </section>
 
-<footer>
-    &copy; 2025 <a href="#">advantage.wtf</a> - All rights reserved.
+<footer class="glass">
+    &copy; 2025 <a href="#" style="color:var(--purple); font-weight:600;">advantage.wtf</a> - All rights reserved.
 </footer>
 
 <script>
-// Background canvas with connecting dots
+// Background Dots Animation
 const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
-
-const dots = [];
-for(let i=0; i<100; i++){
-    dots.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5 });
+let dots = [];
+for(let i=0; i<80; i++){
+    dots.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5});
 }
-
 function animate(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    for(let i=0;i<dots.length;i++){
-        let d = dots[i];
-        d.x += d.vx; d.y += d.vy;
-        if(d.x<0||d.x>canvas.width)d.vx*=-1;
-        if(d.y<0||d.y>canvas.height)d.vy*=-1;
-        ctx.beginPath(); ctx.arc(d.x,d.y,2,0,Math.PI*2); ctx.fillStyle='rgba(155,89,182,0.7)'; ctx.fill();
+    dots.forEach((d,i)=>{
+        d.x+=d.vx; d.y+=d.vy;
+        if(d.x<0||d.x>canvas.width) d.vx*=-1;
+        if(d.y<0||d.y>canvas.height) d.vy*=-1;
+        ctx.beginPath();
+        ctx.arc(d.x,d.y,2,0,Math.PI*2);
+        ctx.fillStyle='rgba(162,107,255,0.5)';
+        ctx.fill();
         for(let j=i+1;j<dots.length;j++){
-            let d2=dots[j], dx=d2.x-d.x, dy=d2.y-d.y, dist=Math.sqrt(dx*dx+dy*dy);
-            if(dist<120){ ctx.strokeStyle='rgba(155,89,182,'+(1-dist/120)*0.5+')'; ctx.lineWidth=1; ctx.beginPath(); ctx.moveTo(d.x,d.y); ctx.lineTo(d2.x,d2.y); ctx.stroke(); }
+            let d2=dots[j];
+            let dx=d2.x-d.x, dy=d2.y-d.y, dist=Math.sqrt(dx*dx+dy*dy);
+            if(dist<120){
+                ctx.strokeStyle='rgba(162,107,255,'+(1-dist/120)*0.2+')';
+                ctx.lineWidth=1;
+                ctx.beginPath();
+                ctx.moveTo(d.x,d.y);
+                ctx.lineTo(d2.x,d2.y);
+                ctx.stroke();
+            }
         }
-    }
+    });
     requestAnimationFrame(animate);
 }
 animate();
-window.addEventListener('resize', ()=>{ canvas.width=window.innerWidth; canvas.height=window.innerHeight; });
+window.addEventListener('resize', ()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
 lucide.createIcons();
 </script>
-
 </body>
 </html>
