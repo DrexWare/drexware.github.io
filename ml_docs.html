@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moonlight Lua API — Documentation</title>
+  <style>
+    :root{
+      --bg:#0f1720; --panel:#0b1220; --muted:#9aa6b2; --accent:#7dd3fc; --accent-2:#60a5fa; --card:#0b1220; --glass: rgba(255,255,255,0.03);
+      --mono: 'SFMono-Regular', Consolas, "Liberation Mono", Menlo, monospace;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial;color:#e6eef6;background:linear-gradient(180deg,#071022 0%, #081727 100%);}
+    .app{display:grid;grid-template-columns:320px 1fr;gap:24px;padding:28px;max-width:1200px;margin:0 auto;height:100vh}
+    header{grid-column:1/-1;display:flex;align-items:center;gap:16px;margin-bottom:6px}
+    .logo{width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#042033;font-weight:700;box-shadow:0 6px 18px rgba(8,20,32,0.6)}
+    .title{font-size:18px;font-weight:700}
+    .subtitle{font-size:13px;color:var(--muted)}
+
+    /* Sidebar */
+    .sidebar{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:18px;backdrop-filter: blur(6px);height:calc(100vh - 120px);overflow:auto}
+    .search{display:flex;gap:8px;margin-bottom:12px}
+    .search input{flex:1;padding:10px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.03);background:transparent;color:inherit}
+    .toc{list-style:none;padding:0;margin:6px 0}
+    .toc li{margin:6px 0}
+    .toc a{color:var(--muted);text-decoration:none;font-size:14px}
+    .toc a:hover{color:var(--accent)}
+
+    /* Content */
+    .content{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:12px;padding:28px;overflow:auto;height:calc(100vh - 120px)}
+    h1{margin:0;font-size:24px}
+    h2{font-size:18px;margin-top:20px}
+    h3{font-size:15px;margin-top:16px;color:#cfe9ff}
+    p{color:var(--muted);line-height:1.6}
+    pre{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.03);padding:14px;border-radius:8px;overflow:auto;font-family:var(--mono);font-size:13px;color:#dff3ff}
+    code{font-family:var(--mono);font-size:13px}
+    .kbadge{display:inline-block;padding:6px 8px;border-radius:6px;background:var(--glass);border:1px solid rgba(255,255,255,0.02);color:var(--muted);font-size:12px}
+    .grid{display:grid;grid-template-columns:1fr 260px;gap:18px}
+
+    /* Responsive */
+    @media (max-width:980px){.app{grid-template-columns:1fr;padding:16px}.sidebar{height:auto}.content{height:auto;margin-top:12px}}
+
+    /* copy button */
+    .code-wrap{position:relative}
+    .copy-btn{position:absolute;right:10px;top:10px;background:transparent;border:1px solid rgba(255,255,255,0.04);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer;font-size:12px}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:12px}
+    .foot{font-size:13px;color:var(--muted);margin-top:22px}
+
+    /* small table */
+    table{width:100%;border-collapse:collapse;margin:12px 0}
+    th,td{padding:8px;text-align:left;border-bottom:1px dashed rgba(255,255,255,0.02);color:var(--muted);font-size:13px}
+    th{color:#bfe9ff}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="logo">ML</div>
+      <div>
+        <div class="title">Moonlight Lua API</div>
+        <div class="subtitle">Lua | Draw API | Callbacks | Globals</div>
+      </div>
+    </header>
+
+    <aside class="sidebar">
+      <div class="search">
+        <input id="search" placeholder="Search headings or functions..." />
+      </div>
+      <nav>
+        <ul class="toc" id="toc">
+          <li><a href="#callbacks-api">Callbacks API</a></li>
+          <li><a href="#draw-api">Draw API</a></li>
+          <li style="margin-left:8px;"><a href="#drawaddtext">draw.addtext</a></li>
+          <li style="margin-left:8px;"><a href="#drawcalculatetextsize">draw.calculatetextsize</a></li>
+          <li style="margin-left:8px;"><a href="#drawscreensize">draw.screensize</a></li>
+          <li style="margin-left:8px;"><a href="#drawaddrect">draw.addrect</a></li>
+          <li style="margin-left:8px;"><a href="#drawaddrectfilled">draw.addrectfilled</a></li>
+          <li style="margin-left:8px;"><a href="#drawaddgradient">draw.addgradient</a></li>
+          <li style="margin-left:8px;"><a href="#drawworldtoscreen">draw.WorldToScreen</a></li>
+          <li><a href="#globals-api">Globals API</a></li>
+          <li style="margin-left:8px;"><a href="#globalsusername">globals.username</a></li>
+          <li style="margin-left:8px;"><a href="#globalsgetlocalbone">globals.GetLocalBone</a></li>
+          <li><a href="#example-script">Example Script</a></li>
+        </ul>
+      </nav>
+      <div style="margin-top:18px" class="meta">
+        Scripts folder:
+        <div class="kbadge" style="margin-top:8px">C:\\moonlight\\scripts\\</div>
+      </div>
+      <div class="foot">Tip: use the search box to filter the table of contents.</div>
+    </aside>
+
+    <main class="content" id="content">
+      <h1>Moonlight Lua API Documentation</h1>
+      <p class="meta">This single-file documentation describes the Lua functions exposed by the Moonlight overlay integration. Drop <span class="kbadge">.lua</span> files into <code>C:\\moonlight\\scripts\\</code>. Each script runs in its own Lua state.</p>
+
+      <h2 id="callbacks-api">Callbacks API</h2>
+      <p>Register Lua functions that the C++ host will call at specific times (paint, rescan).</p>
+
+      <h3>callbacks.paint(function)</h3>
+      <p>Registers a function that runs every frame during the render pass.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp1">Copy</button>
+        <pre id="cp1">callbacks.paint(function()
+    draw.addtext(50, 50, 1, 255, 255, 255, 255, "Hello, World!")
+end)</pre>
+      </div>
+
+      <h3>callbacks.rescan(function)</h3>
+      <p>Registers a function that runs when the C++ layer triggers a rescan event.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp2">Copy</button>
+        <pre id="cp2">callbacks.rescan(function()
+    print("Rescan triggered!")
+end)</pre>
+      </div>
+
+      <h2 id="draw-api">Draw API</h2>
+      <p>The Draw API uses ImGui's background draw list to render 2D elements on-screen. Coordinates are in pixels.</p>
+
+      <h3 id="drawaddtext">draw.addtext(x, y, size, r, g, b, a, text)</h3>
+      <p>Draws text with an outline. <em>size</em> selects a font scale preset. Alpha ranges 0–255.</p>
+      <table>
+        <thead><tr><th>Parameter</th><th>Type</th><th>Description</th></tr></thead>
+        <tbody>
+          <tr><td>x, y</td><td>number</td><td>Screen coordinates</td></tr>
+          <tr><td>size</td><td>integer</td><td>Font scale preset (1..3)</td></tr>
+          <tr><td>r,g,b,a</td><td>integer</td><td>Color and alpha (0-255)</td></tr>
+          <tr><td>text</td><td>string</td><td>Text string</td></tr>
+        </tbody>
+      </table>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp3">Copy</button>
+        <pre id="cp3">draw.addtext(200, 100, 2, 255, 255, 255, 255, "FPS: 144")</pre>
+      </div>
+
+      <h3 id="drawcalculatetextsize">draw.calculatetextsize(text)</h3>
+      <p>Returns width and height of <code>text</code> in pixels.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp4">Copy</button>
+        <pre id="cp4">local w, h = draw.calculatetextsize("Hello")</pre>
+      </div>
+
+      <h3 id="drawscreensize">draw.screensize()</h3>
+      <p>Returns screen width and height (uses host OS metrics).</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp5">Copy</button>
+        <pre id="cp5">local w, h = draw.screensize()</pre>
+      </div>
+
+      <h3 id="drawaddrect">draw.addrect(x, y, width, height, r, g, b [, thickness])</h3>
+      <p>Outlined rectangle. <code>thickness</code> defaults to <code>1.0</code>.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp6">Copy</button>
+        <pre id="cp6">draw.addrect(100, 100, 200, 100, 255, 0, 0, 2)</pre>
+      </div>
+
+      <h3 id="drawaddrectfilled">draw.addrectfilled(x, y, width, height, r, g, b [, a])</h3>
+      <p>Filled rectangle. Alpha defaults to 255.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp7">Copy</button>
+        <pre id="cp7">draw.addrectfilled(50, 50, 150, 75, 0, 128, 255, 180)</pre>
+      </div>
+
+      <h3 id="drawaddgradient">draw.addgradient(x, y, width, height, r1,g1,b1,a1, r2,g2,b2,a2, r3,g3,b3,a3, r4,g4,b4,a4)</h3>
+      <p>Gradient rectangle with per-corner colors (TL, TR, BL, BR).</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp8">Copy</button>
+        <pre id="cp8">draw.addgradient(
+  0, 0, 300, 60,
+  20,20,20,255,
+  40,40,40,255,
+  10,10,10,255,
+  25,25,25,255
+)</pre>
+      </div>
+
+      <h3 id="drawworldtoscreen">draw.WorldToScreen(x, y, z)</h3>
+      <p>Converts a 3D point to 2D screen coordinates. Returns <code>(x, y)</code> or <code>(nil, nil)</code> if invalid.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp9">Copy</button>
+        <pre id="cp9">local sx, sy = draw.WorldToScreen(0, 10, 0)
+if sx then
+  draw.addtext(sx, sy, 1, 255, 255, 0, 255, "Target")
+end</pre>
+      </div>
+
+      <h2 id="globals-api">Globals API</h2>
+      <p>Helpers exposing environment data.</p>
+
+      <h3 id="globalsusername">globals.username()</h3>
+      <p>Returns the username string provided by the host.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp10">Copy</button>
+        <pre id="cp10">local user = globals.username()
+draw.addtext(10, 10, 1, 255, 255, 255, 255, "User: " .. user)</pre>
+      </div>
+
+      <h3 id="globalsgetlocalbone">globals.GetLocalBone(boneName)</h3>
+      <p>Returns the local player's bone position as <code>x,y,z</code>.
+      Use with <code>draw.WorldToScreen</code> to project to screen space.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp11">Copy</button>
+        <pre id="cp11">local x, y, z = globals.GetLocalBone("Head")
+if x then
+  local sx, sy = draw.WorldToScreen(x, y, z)
+  if sx then
+    draw.addtext(sx, sy - 10, 1, 255, 0, 0, 255, "HEAD")
+  end
+end</pre>
+      </div>
+
+      <h2 id="example-script">Example Script</h2>
+      <p>This compact example demonstrates a paint callback that draws a header bar, title, username and a status box.</p>
+      <div class="code-wrap">
+        <button class="copy-btn" data-target="cp12">Copy</button>
+        <pre id="cp12">-- example.lua
+callbacks.paint(function()
+  local w, h = draw.screensize()
+
+  draw.addgradient(0, 0, w, 40,
+    15,15,15,255, 25,25,25,255, 20,20,20,255, 30,30,30,255)
+
+  local title = "Moonlight Overlay Example"
+  local tw, th = draw.calculatetextsize(title)
+  draw.addtext(w/2 - tw/2, 10, 2, 255,255,255,255, title)
+
+  local user = globals.username()
+  draw.addtext(10, h - 25, 1, 180,180,180,255, "User: " .. user)
+end)</pre>
+      </div>
+
+     </main>
+  </div>
+
+  <script>
+    // Copy buttons
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-target');
+        const code = document.getElementById(id).innerText;
+        try{ await navigator.clipboard.writeText(code); btn.innerText='Copied'; setTimeout(()=>btn.innerText='Copy',1200)}catch(e){console.warn(e);}
+      });
+    });
+
+    // TOC search filter
+    const search = document.getElementById('search');
+    const toc = document.getElementById('toc');
+    search.addEventListener('input', (e)=>{
+      const q = e.target.value.trim().toLowerCase();
+      [...toc.querySelectorAll('a')].forEach(a => {
+        const match = a.textContent.toLowerCase().includes(q);
+        a.style.display = match || q === '' ? 'block' : 'none';
+      });
+    });
+
+    // Smooth scroll for links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        ev.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+      });
+    });
+  </script>
+</body>
+</html>
