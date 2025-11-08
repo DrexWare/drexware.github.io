@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moonlight - Installer</title>
+  <style>
+    /* === Reset & Base === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', 'Segoe UI', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #e0e6ed;
+    }
+
+    /* === Container === */
+    .container {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 3rem 4rem;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      max-width: 500px;
+      width: 90%;
+      transition: transform 0.3s ease;
+    }
+
+    .container:hover {
+      transform: translateY(-4px);
+    }
+
+    /* === Typography === */
+    h1 {
+      font-size: 2rem;
+      color: #a8c9ff;
+      margin-bottom: 1rem;
+      letter-spacing: 0.5px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #cdd6e0;
+      margin-bottom: 2rem;
+    }
+
+    /* === Download Button === */
+    .download-button {
+      display: inline-block;
+      background: linear-gradient(90deg, #0077ff, #009dff);
+      color: white;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(0, 153, 255, 0.4);
+    }
+
+    .download-button:hover {
+      background: linear-gradient(90deg, #009dff, #33bfff);
+      box-shadow: 0 0 20px rgba(0, 153, 255, 0.6);
+      transform: scale(1.05);
+    }
+
+    /* === Footer === */
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.9rem;
+      color: #9fb3c8;
+    }
+
+    .footer a {
+      color: #66b2ff;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .footer a:hover {
+      color: #99d1ff;
+      text-decoration: underline;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 500px) {
+      .container {
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>install moonlight.cc</h1>
+    <p>download and install the latest binary release of moonlight.cc external.</p>
+
+    <a class="download-button" href="https://github.com/advantagewtf/roblox-script/releases/download/ml1/release.rar">Download Installer</a>
+
+    <div class="footer">
+      <p>Need help? Visit the <a href="https://advantagewtf.github.io/ml_docs.html">documentation</a>.</p>
+    </div>
+  </div>
+</body>
+</html>
