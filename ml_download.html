@@ -1,119 +1,263 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Moonlight - Installer</title>
-  <style>
-    /* === Reset & Base === */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Inter', 'Segoe UI', sans-serif;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moonlight - Installer</title>
+    <meta name="description" content="Download the official Moonlight.cc external installer. Fast, secure, and always up to date.">
+    <meta name="theme-color" content="#ff0044">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Moonlight.cc - Official Installer">
+    <meta property="og:description" content="Download the latest Moonlight external release. Secure • Fast • Updated daily.">
+    <meta property="og:image" content="https://yourdomain.com/assets/moonlight-banner.png">
+    <meta property="og:url" content="https://yourdomain.com">
+    <meta property="og:type" content="website">
 
-    body {
-      height: 100vh;
-      background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: #e0e6ed;
-    }
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
 
-    /* === Container === */
-    .container {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 16px;
-      padding: 3rem 4rem;
-      text-align: center;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      max-width: 500px;
-      width: 90%;
-      transition: transform 0.3s ease;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .container:hover {
-      transform: translateY(-4px);
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            background: radial-gradient(circle at top left, rgba(255, 0, 68, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at bottom right, rgba(255, 0, 68, 0.1) 0%, transparent 60%),
+                        #0a0a0a;
+            overflow: hidden;
+        }
 
-    /* === Typography === */
-    h1 {
-      font-size: 2rem;
-      color: #a8c9ff;
-      margin-bottom: 1rem;
-      letter-spacing: 0.5px;
-    }
+        /* Loader */
+        .loader-wrapper {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: #0a0a0a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease-out;
+        }
+        .loader-wrapper.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loader img {
+            width: 100px;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
 
-    p {
-      font-size: 1rem;
-      color: #cdd6e0;
-      margin-bottom: 2rem;
-    }
+        /* Container */
+        .container {
+            background: rgba(20, 20, 20, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 0, 68, 0.3);
+            border-radius: 20px;
+            padding: 4rem 3rem;
+            text-align: center;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+                        0 0 40px rgba(255, 0, 68, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            z-index: 10;
+        }
 
-    /* === Download Button === */
-    .download-button {
-      display: inline-block;
-      background: linear-gradient(90deg, #0077ff, #009dff);
-      color: white;
-      padding: 0.9rem 2rem;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      letter-spacing: 0.3px;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 12px rgba(0, 153, 255, 0.4);
-    }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: var(--mouse-y, 50%);
+            left: var(--mouse-x, 50%);
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 68, 0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
 
-    .download-button:hover {
-      background: linear-gradient(90deg, #009dff, #33bfff);
-      box-shadow: 0 0 20px rgba(0, 153, 255, 0.6);
-      transform: scale(1.05);
-    }
+        .container:hover::before {
+            opacity: 1;
+        }
 
-    /* === Footer === */
-    .footer {
-      margin-top: 2rem;
-      font-size: 0.9rem;
-      color: #9fb3c8;
-    }
+        .container:hover {
+            transform: translateY(-10px);
+            border-color: #ff0044;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7),
+                        0 0 60px rgba(255, 0, 68, 0.4);
+        }
 
-    .footer a {
-      color: #66b2ff;
-      text-decoration: none;
-      transition: color 0.2s ease;
-    }
+        h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #ff0044, #ff4d8a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
 
-    .footer a:hover {
-      color: #99d1ff;
-      text-decoration: underline;
-    }
+        .subtitle {
+            font-size: 1.1rem;
+            color: #ff3366;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-    /* === Responsive === */
-    @media (max-width: 500px) {
-      .container {
-        padding: 2rem;
-      }
+        p {
+            font-size: 1.15rem;
+            color: #ccc;
+            margin: 1.5rem 0 2.5rem;
+            line-height: 1.6;
+        }
 
-      h1 {
-        font-size: 1.6rem;
-      }
-    }
-  </style>
+        /* Download Button */
+        .download-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(135deg, #ff0044, #ff3366);
+            color: white;
+            padding: 1.1rem 2.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 30px rgba(255, 0, 68, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .download-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .download-button:hover::before {
+            left: 100%;
+        }
+
+        .download-button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(255, 0, 68, 0.6);
+            background: linear-gradient(135deg, #ff3366, #ff6677);
+        }
+
+        .download-button svg {
+            width: 22px;
+            height: 22px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 3rem;
+            font-size: 0.95rem;
+            color: #999;
+        }
+
+        .footer a {
+            color: #ff0044;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer a:hover {
+            color: #ff3366;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .container {
+                padding: 3rem 2rem;
+            }
+            h1 {
+                font-size: 2.5rem;
+            }
+            .download-button {
+                padding: 1rem 2.2rem;
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h1>install moonlight.cc</h1>
-    <p>download and install the latest binary release of moonlight.cc external.</p>
-
-    <a class="download-button" href="https://github.com/advantagewtf/roblox-script/releases/download/ml1/release.rar">Download Installer</a>
-
-    <div class="footer">
-      <p>Need help? Visit the <a href="https://advantagewtf.github.io/ml_docs.html">documentation</a>.</p>
+    <!-- Loader -->
+    <div class="loader-wrapper">
+        <div class="loader">
+            <img src="https://raw.githubusercontent.com/advantagewtf/roblox-script/main/assets/logo.png" alt="Moonlight Logo">
+        </div>
     </div>
-  </div>
+
+    <div class="container">
+        <h1>Moonlight</h1>
+        <div class="subtitle">external</div>
+        <p>Download and install the latest binary release of <strong>moonlight.cc</strong> external.<br>Safe, fast, and updated daily.</p>
+        
+        <a class="download-button" href="https://github.com/advantagewtf/roblox-script/releases/download/ml1/release.rar">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+            Download Installer
+        </a>
+
+        <div class="footer">
+            <p>Need help? Visit the <a href="https://advantagewtf.github.io/ml_docs.html">documentation</a> or join our Discord.</p>
+        </div>
+    </div>
+
+    <script>
+        // Loader fade out
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelector('.loader-wrapper').classList.add('fade-out');
+            }, 600);
+        });
+
+        // Mouse glow effect
+        const container = document.querySelector('.container');
+        container.addEventListener('mousemove', (e) => {
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            container.style.setProperty('--mouse-x', `${x}px`);
+            container.style.setProperty('--mouse-y', `${y}px`);
+        });
+    </script>
 </body>
 </html>
