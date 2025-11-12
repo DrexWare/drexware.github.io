@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title> ml.cc key</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://publisher.linkvertise.com/cdn/linkvertise.js"></script>
+    <script>linkvertise(1443057, {whitelist: [], blacklist: []});</script>
+    
+    <style>
+        :root {
+            --primary: #ff0044;
+            --success: #b80000;
+            --dark: #2d3436;
+            --light: #f8f9fa;
+            --glass: rgba(255, 255, 255, 0.15);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --border: 1px solid rgba(255, 255, 255, 0.2);
+            --gradient: linear-gradient(135deg, #000000, #e75c5c);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--gradient);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>') repeat;
+            animation: float 20s infinite linear;
+            z-index: -1;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-100px); }
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            border: var(--border);
+            text-align: center;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #290202b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            padding: 14px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(108, 92, 231, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        #key {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            word-break: break-all;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.4s ease;
+        }
+
+        #key.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        #key code {
+            display: block;
+            background: #2d3436;
+            color: #ffffff;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            letter-spacing: 1.5px;
+            margin: 12px 0;
+            font-size: 1.15rem;
+        }
+
+        #key small {
+            display: block;
+            margin-top: 12px;
+            font-size: 0.85rem;
+            opacity: 0.8;
+            color: #dfe6e9;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer a {
+            color: #dfe6e9;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 30px 20px; }
+            .btn { padding: 12px 24px; font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Reward Unlocked!</h1>
+        <p>your key: <strong>moonlight.cc key</strong>.</p>
+
+        
+
+        <div id="key"></div>
+
+        <!-- <div class="footer">
+            <small>Key expires in 24 hours • <a href="#" onclick="generateKey(); return false;">Regenerate</a></small>
+        </div> -->
+    </div>
+
+<script>
+    // ------------------------------------------------------------
+    // 1. CONFIGURATION
+    // ------------------------------------------------------------
+    const LINKVERTISE_ID = 1443057;                 // your Linkvertise ID
+    const EXPECTED_QUERY_PARAM = 'lvt';              // name of the param Linkvertise adds
+    const EXPECTED_VALUE_PREFIX = 't_';              // Linkvertise uses t_xxxxxxx
+
+    const SALT = "devkey291872437892";              // keep in sync with C++
+
+    // ------------------------------------------------------------
+    // 2. HELPER FUNCTIONS
+    // ------------------------------------------------------------
+    function tinyHash(str) {
+        let h = 0x811c9dc5;
+        for (let i = 0; i < str.length; i++) {
+            h ^= str.charCodeAt(i);
+            h *= 0x01000193;
+        }
+        return h >>> 0;
+    }
+
+    function todayYYYYMMDD() {
+        const d = new Date();
+        return d.getFullYear() +
+               String(d.getMonth() + 1).padStart(2, '0') +
+               String(d.getDate()).padStart(2, '0');
+    }
+
+    function generateKey() {
+        const payload = todayYYYYMMDD() + SALT;
+        const hash = tinyHash(payload);
+        const prefix = ("00000000" + hash.toString(16)).slice(-8);
+        return prefix + prefix + prefix + prefix;   // 32-char key
+    }
+
+    // ------------------------------------------------------------
+    // 3. LINKVERTISE VALIDATION
+    // ------------------------------------------------------------
+    function isFromLinkvertise() {
+        // 3a – check the query string that Linkvertise appends after task completion
+        const params = new URLSearchParams(location.search);
+        const token = params.get(EXPECTED_QUERY_PARAM);
+        if (!token || !token.startsWith(EXPECTED_VALUE_PREFIX)) return false;
+
+        // 3b – optional: verify the token belongs to *your* link (Linkvertise adds the ID)
+        // Example token: t_12345678_1443057  → split and compare
+        const parts = token.split('_');
+        if (parts.length >= 3 && parts[2] == LINKVERTISE_ID) return true;
+
+        // 3c – fallback: check referrer (less reliable, but catches old flows)
+        const ref = document.referrer.toLowerCase();
+        return ref.includes('linkvertise.com') || ref.includes('lvrts.com');
+    }
+
+    // ------------------------------------------------------------
+    // 4. MAIN LOGIC
+    // ------------------------------------------------------------
+    const keyDiv = document.getElementById('key');
+
+    if (isFromLinkvertise()) {
+        // Visitor completed the Linkvertise flow → show real key
+        const fullKey = generateKey();
+        keyDiv.innerHTML = `
+            <code>${fullKey}</code>
+            <small>Valid only today – copy it now!</small>
+        `;
+        keyDiv.classList.add('show');
+    } else {
+        // NOT from Linkvertise → block
+        keyDiv.innerHTML = `
+            <p style="color:#ff6b6b;">
+                <strong>Access Denied</strong><br>
+                You must complete the Linkvertise tasks to unlock the key.
+            </p>
+        `;
+        keyDiv.classList.add('show');
+
+        // Optional: redirect back to your Linkvertise URL after a short delay
+        setTimeout(() => {
+            const lvUrl = `https://linkvertise.com/${LINKVERTISE_ID}/moonlight-cc-key?o=direct`;
+            window.location.href = lvUrl;
+        }, 3000);
+    }
+</script>
+</body>
+</html>
