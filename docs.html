@@ -5,19 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Moonlight Lua API — Documentation</title>
   <meta name="description" content="Official Moonlight overlay Lua API docs. Draw API, Callbacks, Globals.">
-      <meta name="theme-color" content="#ff0044">
-    
+  <meta name="theme-color" content="#ff0044">
+   
   <link rel="stylesheet" href="style_docs.css">
   <link rel="icon" href="assets/logo.png" type="image/png">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 <body>
+  <!-- Loader -->
   <div class="loader-wrapper">
     <div class="loader">
       <img src="assets/logo.png" alt="Moonlight">
     </div>
   </div>
 
+  <!-- Header -->
   <header class="header">
     <nav class="navbar">
       <div class="logo">
@@ -37,20 +39,20 @@
     </nav>
   </header>
 
+  <!-- Main Content -->
   <main class="main">
+    <!-- Hero -->
     <section class="hero">
       <h1><span class="titlept1">Moonlight</span> <span class="titlept2">Lua API</span></h1>
       <p class="tagline">The most powerful overlay scripting API</p>
       <p class="subtitle">Draw ESP, HUDs, watermarks, 3D to 2D projection — all in Lua</p>
       <div class="button-group">
         <a href="#callbacks-api" class="cta-button">Explore API</a>
-        <a href="https://moonlightrblx.github.io/download" class="cta-button download-button">
-          Download Moonlight
-        </a>
+        <a href="https://moonlightrblx.github.io/download" class="cta-button download-button">Download Moonlight</a>
       </div>
     </section>
 
-    <!-- ALL YOUR ORIGINAL DOCS BELOW — NOW VISIBLE -->
+    <!-- Callbacks API -->
     <section id="callbacks-api" class="content-section">
       <h2>Callbacks API</h2>
       <p>Register Lua functions that the C++ host will call at specific times (paint, rescan).</p>
@@ -74,6 +76,7 @@ end)</pre>
       </div>
     </section>
 
+    <!-- Draw API -->
     <section id="draw-api" class="content-section">
       <h2>Draw API</h2>
       <p>The Draw API uses ImGui's background draw list to render 2D elements on-screen. Coordinates are in pixels.</p>
@@ -146,6 +149,7 @@ end</pre>
       </div>
     </section>
 
+    <!-- Globals API -->
     <section id="globals-api" class="content-section">
       <h2>Globals API</h2>
       <p>Helpers exposing environment data.</p>
@@ -159,7 +163,7 @@ draw.addtext(10, 10, 1, 255, 255, 255, 255, "User: " .. user)</pre>
       </div>
 
       <h3 id="globalsgetlocalbone">globals.GetLocalBone(boneName)</h3>
-      <p>Returns the local player's bone position as <code>x,y,z</code>.<br>Use with <code>draw.WorldToScreen</code> to project to screen space.</p>
+      <p>Returns the local player's bone position as <code>x,y,z</code>. Use with <code>draw.WorldToScreen</code>.</p>
       <div class="code-block">
         <button class="copy-btn" data-target="cp11">Copy</button>
         <pre id="cp11">local x, y, z = globals.GetLocalBone("Head")
@@ -170,11 +174,32 @@ if x then
   end
 end</pre>
       </div>
+
+      <h3 id="globalsgetplayers">globals.GetPlayers()</h3>
+      <p>Returns a table of all cached players. Each entry has: <code>name, health, enemy, team, x, y, z</code>.</p>
+      <div class="code-block">
+        <button class="copy-btn" data-target="cp13">Copy</button>
+        <pre id="cp13">local players = globals.GetPlayers()
+for _, p in pairs(players) do
+  if p.enemy and p.health > 0 then
+    print(p.name .. " @ " .. p.x .. "," .. p.y .. "," .. p.z)
+  end
+end</pre>
+      </div>
+
+      <h3 id="globalsreadmemory">globals.ReadMemory(address, type)</h3>
+      <p>Reads memory at <code>address</code>. <code>type</code>: <code>1=int</code>, <code>2=float</code>, <code>3=bool</code>.</p>
+      <div class="code-block">
+        <button class="copy-btn" data-target="cp14">Copy</button>
+        <pre id="cp14">local value = globals.ReadMemory(0xDEADBEEF, 2)
+if value then print("Float: " .. value) end</pre>
+      </div>
     </section>
 
+    <!-- Example Script -->
     <section id="example-script" class="content-section">
       <h2>Example Script</h2>
-      <p>This compact example demonstrates a paint callback that draws a header bar, title, username and a status box.</p>
+      <p>Draws a header bar with title and username.</p>
       <div class="code-block">
         <button class="copy-btn" data-target="cp12">Copy</button>
         <pre id="cp12">-- example.lua
@@ -191,6 +216,7 @@ end)</pre>
       </div>
     </section>
 
+    <!-- Join Us -->
     <section class="join-us">
       <h2>Ready to build something insane?</h2>
       <p>Join 10,000+ scripters using Moonlight</p>
@@ -198,17 +224,18 @@ end)</pre>
         <a href="https://moonlightrblx.github.io/discord" class="join-button discord-btn">Join Discord</a>
         <a href="https://moonlightrblx.github.io/download" class="join-button download-btn">Download Now</a>
       </div>
-      <p class="meta" style="margin-top: 2rem; opacity: 0.8;">
-        Scripts folder: <code style="background:rgba(255,0,68,0.2); padding:4px 12px; border-radius:8px; border:1px solid #ff0044;">C:\moonlight\scripts\</code>
+      <p class="meta">
+        Scripts folder: <code class="highlight">C:\moonlight\scripts\</code>
       </p>
     </section>
   </main>
 
+  <!-- Footer -->
   <footer class="footer">
     <p>© 2025 Moonlight • Made with blood, sweat, and 3 Red Bulls a day</p>
   </footer>
 
-  <!-- FULLY WORKING SCRIPT (no external file needed) -->
+  <!-- JavaScript (No inline styles) -->
   <script>
     // Loader
     window.addEventListener('load', () => {
@@ -236,19 +263,19 @@ end)</pre>
         const code = document.getElementById(id).innerText;
         try {
           await navigator.clipboard.writeText(code);
-          btn.innerText = 'Copied!';
+          btn.textContent = 'Copied!';
           btn.classList.add('copied');
           setTimeout(() => {
-            btn.innerText = 'Copy';
+            btn.textContent = 'Copy';
             btn.classList.remove('copied');
           }, 1500);
         } catch (e) {
-          btn.innerText = 'Failed';
+          btn.textContent = 'Failed';
         }
       });
     });
 
-    // Scroll reveal for content sections
+    // Scroll reveal
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -256,7 +283,6 @@ end)</pre>
         }
       });
     }, { threshold: 0.1 });
-
     document.querySelectorAll('.content-section').forEach(sec => {
       observer.observe(sec);
     });
