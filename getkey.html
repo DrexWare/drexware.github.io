@@ -216,6 +216,7 @@
             const hash = tinyHash(payload);
             const prefix = ("00000000" + hash.toString(16)).slice(-8).toLowerCase();
             const fullKey = prefix + prefix + prefix + prefix;
+    
                 const keyDiv = document.getElementById('key');
             keyDiv.innerHTML = `
                 <code>${fullKey}</code>
@@ -224,16 +225,7 @@
             keyDiv.classList.add('show');
         }
 
-        function generateKey() {
-            const payload = todayYYYYMMDD() + SALT;
-            const hash = tinyHash(payload);
-            const prefix = ("00000000" + hash.toString(16)).slice(-8);
-            const fullKey = prefix + prefix + prefix + prefix;  // 32 chars
-
         
-
-          
-        }
 
         generateKey()
 
