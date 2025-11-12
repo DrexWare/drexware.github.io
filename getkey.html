@@ -197,11 +197,11 @@
     <script>
         const SALT = "devkey291872437892";  // MUST MATCH C++!
         
+
         function tinyHash(str) {
             let h = 0x811c9dc5;
             for (let i = 0; i < str.length; i++) {
-                h ^= str.charCodeAt(i);
-                h *= 0x01000193;
+                h = Math.imul(h ^ str.charCodeAt(i), 0x01000193) >>> 0;
             }
             return h >>> 0;
         }
@@ -214,15 +214,23 @@
         function generateKey() {
             const payload = todayYYYYMMDD() + SALT;
             const hash = tinyHash(payload);
-            const prefix = ("00000000" + hash.toString(16)).slice(-8);
-            const fullKey = prefix + prefix + prefix + prefix;  // 32 chars
-
-            const keyDiv = document.getElementById('key');
+            const prefix = ("00000000" + hash.toString(16)).slice(-8).toLowerCase();
+            const fullKey = prefix + prefix + prefix + prefix;
+                const keyDiv = document.getElementById('key');
             keyDiv.innerHTML = `
                 <code>${fullKey}</code>
               
             `;
             keyDiv.classList.add('show');
+        }
+
+        function generateKey() {
+            const payload = todayYYYYMMDD() + SALT;
+            const hash = tinyHash(payload);
+            const prefix = ("00000000" + hash.toString(16)).slice(-8);
+            const fullKey = prefix + prefix + prefix + prefix;  // 32 chars
+
+        
 
           
         }
