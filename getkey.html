@@ -198,90 +198,39 @@
         </div> -->
     </div>
 
-<script>
-    // ------------------------------------------------------------
-    // 1. CONFIGURATION
-    // ------------------------------------------------------------
-    const LINKVERTISE_ID = 1443057;                 // your Linkvertise ID
-    const EXPECTED_QUERY_PARAM = 'lvt';              // name of the param Linkvertise adds
-    const EXPECTED_VALUE_PREFIX = 't_';              // Linkvertise uses t_xxxxxxx
-
-    const SALT = "devkey291872437892";              // keep in sync with C++
-
-    // ------------------------------------------------------------
-    // 2. HELPER FUNCTIONS
-    // ------------------------------------------------------------
-    function tinyHash(str) {
-        let h = 0x811c9dc5;
-        for (let i = 0; i < str.length; i++) {
-            h ^= str.charCodeAt(i);
-            h *= 0x01000193;
+    <script>
+        const SALT = "devkey291872437892";  // MUST MATCH C++!
+        
+        function tinyHash(str) {
+            let h = 0x811c9dc5;
+            for (let i = 0; i < str.length; i++) {
+                h ^= str.charCodeAt(i);
+                h *= 0x01000193;
+            }
+            return h >>> 0;
         }
-        return h >>> 0;
-    }
 
-    function todayYYYYMMDD() {
-        const d = new Date();
-        return d.getFullYear() +
-               String(d.getMonth() + 1).padStart(2, '0') +
-               String(d.getDate()).padStart(2, '0');
-    }
+        function todayYYYYMMDD() {
+            const d = new Date();
+            return d.getFullYear() + String(d.getMonth() + 1).padStart(2, '0') + String(d.getDate()).padStart(2, '0');
+        }
 
-    function generateKey() {
-        const payload = todayYYYYMMDD() + SALT;
-        const hash = tinyHash(payload);
-        const prefix = ("00000000" + hash.toString(16)).slice(-8);
-        return prefix + prefix + prefix + prefix;   // 32-char key
-    }
+        function generateKey() {
+            const payload = todayYYYYMMDD() + SALT;
+            const hash = tinyHash(payload);
+            const prefix = ("00000000" + hash.toString(16)).slice(-8);
+            const fullKey = prefix + prefix + prefix + prefix;  // 32 chars
 
-    // ------------------------------------------------------------
-    // 3. LINKVERTISE VALIDATION
-    // ------------------------------------------------------------
-    function isFromLinkvertise() {
-        // 3a – check the query string that Linkvertise appends after task completion
-        const params = new URLSearchParams(location.search);
-        const token = params.get(EXPECTED_QUERY_PARAM);
-        if (!token || !token.startsWith(EXPECTED_VALUE_PREFIX)) return false;
+            const keyDiv = document.getElementById('key');
+            keyDiv.innerHTML = `
+                <code>${fullKey}</code>
+              
+            `;
+            keyDiv.classList.add('show');
 
-        // 3b – optional: verify the token belongs to *your* link (Linkvertise adds the ID)
-        // Example token: t_12345678_1443057  → split and compare
-        const parts = token.split('_');
-        if (parts.length >= 3 && parts[2] == LINKVERTISE_ID) return true;
-
-        // 3c – fallback: check referrer (less reliable, but catches old flows)
-        const ref = document.referrer.toLowerCase();
-        return ref.includes('linkvertise.com') || ref.includes('lvrts.com');
-    }
-
-    // ------------------------------------------------------------
-    // 4. MAIN LOGIC
-    // ------------------------------------------------------------
-    const keyDiv = document.getElementById('key');
-
-    if (isFromLinkvertise()) {
-        // Visitor completed the Linkvertise flow → show real key
-        const fullKey = generateKey();
-        keyDiv.innerHTML = `
-            <code>${fullKey}</code>
-            <small>Valid only today – copy it now!</small>
-        `;
-        keyDiv.classList.add('show');
-    } else {
-        // NOT from Linkvertise → block
-        keyDiv.innerHTML = `
-            <p style="color:#ff6b6b;">
-                <strong>Access Denied</strong><br>
-                You must complete the Linkvertise tasks to unlock the key.
-            </p>
-        `;
-        keyDiv.classList.add('show');
-
-        // Optional: redirect back to your Linkvertise URL after a short delay
-        setTimeout(() => {
-            const lvUrl = `https://linkvertise.com/${LINKVERTISE_ID}/moonlight-cc-key?o=direct`;
-            window.location.href = lvUrl;
-        }, 3000);
-    }
-</script>
+          
+        }
+        generateKey()
+    </script>
 </body>
 </html>
