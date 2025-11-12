@@ -1,283 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>advantage.wtf</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-    --bg: radial-gradient(circle at top left, #0a0a0a 0%, #1a0a1a 100%);
-    --purple: #a26bff;
-    --white: #fff;
-    --glass: rgba(255, 255, 255, 0.08);
-    --border: rgba(255, 255, 255, 0.2);
-    --highlight: rgba(162, 107, 255, 0.4);
-    --shadow: rgba(0, 0, 0, 0.6);
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    scrollbar-width: none;
-}
-*::-webkit-scrollbar { display: none; }
-
-body {
-    background: var(--bg);
-    color: var(--white);
-    overflow: hidden;
-}
-
-/* Glass panel base */
-.glass {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    border-radius: 20px;
-    box-shadow: 0 8px 32px var(--shadow);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    transition: all 0.4s ease;
-}
-.glass:hover {
-    background: rgba(255,255,255,0.12);
-    box-shadow: 0 12px 40px rgba(162,107,255,0.15);
-    border-color: var(--highlight);
-}
-
-/* Header */
-header {
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 90%;
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 10;
-}
-header h1 {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--white);
-}
-header h1 span { color: var(--purple); }
-nav a {
-    color: var(--white);
-    margin-left: 2rem;
-    position: relative;
-    font-weight: 600;
-}
-nav a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 0;
-    bottom: -3px;
-    background: var(--purple);
-    transition: width 0.3s ease;
-}
-nav a:hover::after { width: 100%; }
-
-/* Hero Section */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-}
-.hero h2 {
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--white);
-    text-shadow: 0 0 20px rgba(162, 107, 255, 0.5);
-}
-.hero p {
-    font-size: 1.2rem;
-    color: rgba(255,255,255,0.7);
-    margin-bottom: 2rem;
-}
-.hero .btn-group {
-    display: flex;
-    gap: 1rem;
-}
-.hero a {
-    background: var(--glass);
-    border: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-    border-radius: 16px;
-    padding: 1rem 2rem;
-    color: var(--white);
-    font-weight: 600;
-    transition: all 0.3s ease;
-}
-.hero a:hover {
-    background: rgba(162, 107, 255, 0.15);
-    border-color: var(--purple);
-    transform: scale(1.05);
-}
-
-/* Sections */
-section {
-    padding: 6rem 2rem;
-    position: relative;
-    z-index: 2;
-}
-section h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    color: var(--purple);
-    margin-bottom: 3rem;
-}
-
-/* Cards */
-.cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 2rem;
-}
-.card {
-    text-align: center;
-    padding: 2rem;
-}
-.card svg {
-    width: 48px;
-    height: 48px;
-    fill: var(--purple);
-    margin-bottom: 1rem;
-}
-
-/* Footer */
-footer {
-    text-align: center;
-    padding: 2rem;
-    color: rgba(255,255,255,0.6);
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border);
-    backdrop-filter: blur(10px);
-}
-
-/* Background Canvas */
-#bgCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-}
-</style>
-<script src="https://unpkg.com/lucide@latest"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Moonlight — Roblox External Overlay Cheat</title>
+  <meta name="description" content="Byfron-proof external Lua overlay for Roblox. ESP, aim visuals, bone ESP, HUDs. Undetected memory read + ImGui render. Join 10K+ cheaters." />
+  <link rel="stylesheet" href="style_docs.css" />
+  <link rel="icon" href="assets/logo.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff0044;
+      --bg-dark: #0a0a0a;
+      --bg-card: #111;
+      --text: #eee;
+      --text-muted: #aaa;
+      --warn: #ffaa00;
+    }
+    body { background: var(--bg-dark); color: var(--text); font-family: 'Inter', sans-serif; }
+    .hero { text-align: center; padding: 8rem 1rem 4rem; }
+    .logo-img { height: 80px; margin-bottom: 1.5rem; }
+    .title-main { font-size: 4.5rem; font-weight: 900; margin: 0; background: linear-gradient(135deg, #ff0044, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .tagline { font-size: 1.5rem; margin: 1rem 0; color: var(--text-muted); }
+    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; }
+    .feature-card { background: var(--bg-card); border-radius: 16px; padding: 2rem; text-align: center; border: 1px solid #222; transition: all 0.3s ease; }
+    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(255,0,68,0.15); border-color: var(--primary); }
+    .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .btn-primary { background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }
+    .btn-primary:hover { background: #ff3366; transform: scale(1.05); }
+    .btn-secondary { background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; margin-left: 1rem; transition: 0.3s; }
+    .btn-secondary:hover { background: rgba(255,0,68,0.1); }
+    .stats { display: flex; justify-content: center; gap: 4rem; padding: 3rem 1rem; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
+    .stat-label { color: var(--text-muted); font-size: 1rem; }
+    .warning { background: rgba(255,170,0,0.1); border: 1px solid var(--warn); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
+    .warning strong { color: var(--warn); }
+    .code-preview { background: #1a1a1a; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; border-left: 4px solid var(--primary); }
+    .footer { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 0.9rem; }
+    @media (max-width: 768px) {
+      .title-main { font-size: 3rem; }
+      .hero { padding-top: 6rem; }
+      .btn-secondary { margin-left: 0; margin-top: 1rem; display: block; }
+    }
+  </style>
 </head>
 <body>
 
-<canvas id="bgCanvas"></canvas>
+  <!-- Loader -->
+  <div class="loader-wrapper">
+    <div class="loader">
+      <img src="assets/logo.png" alt="Moonlight">
+    </div>
+  </div>
 
-<header class="glass">
-    <h1>advantage<span>.wtf</span></h1>
-    <nav>
-        <a href="#products">Products</a>
-        <a href="#showcase">Showcase</a>
-        <a href="#contact">Contact</a>
+  <!-- Header -->
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="assets/logo.png" alt="Moonlight">
+        <span>Moonlight</span>
+      </div>
+      <div class="hamburger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+
+        <li><a href="docs.html">Lua API Docs</a></li>
+        <li><a href="https://moonlightrblx.github.io/discord" target="_blank">Discord</a></li>
+      </ul>
     </nav>
-</header>
+  </header>
 
-<section class="hero">
-    <h2>Play Smarter</h2>
-    <p>Tools that give you the edge.</p>
-    <div class="btn-group">
-        <a href="#products"><i data-lucide="compass"></i> Explore</a>
-        <a href="https://discord.gg/mUwbMhGf" target="_blank"><i data-lucide="check"></i> Join Us</a>
+  <!-- Hero Section -->
+  <section class="hero">
+    <img src="assets/logo.png" alt="Moonlight Logo" class="logo-img">
+    <h1 class="title-main">Moonlight</h1>
+    <p class="tagline">External Cheat • Byfron Undetected</p>
+    <p style="max-width: 700px; margin: 1.5rem auto; color: var(--text-muted); line-height: 1.7;">
+      Best roblox external. Zero injection. Pure external C++ + Lua scripting.
+      
+    </p>
+    <div style="margin-top: 2rem;">
+      <a href="https://moonlightrblx.github.io/download" class="btn-primary">Download Free</a>
+      <a href="https://moonlightrblx.github.io/discord" class="btn-secondary">Join Discord</a>
     </div>
-</section>
+    <!-- <div class="warning" style="max-width: 600px; margin: 2rem auto;">
+      <strong>⚠️ Alt accounts only. Roblox TOS violation. HWID/IP ban risk.</strong><br>
+      External = low detection (no DLL). Use VPN/Spoofer for mains.
+    </div> -->
+  </section>
 
-<section id="products">
-    <h2>Products</h2>
-    <div class="cards">
-        <div class="card glass">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
-            <h3>Minecraft</h3>
-            <p>Fast, safe, and smooth cheats for Minecraft.</p>
-        </div>
-        <div class="card glass">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
-            <h3>CS2</h3>
-            <p>Play for months without getting caught.</p>
-        </div>
-        <div class="card glass">
-            <svg viewBox="0 0 24 24"><path d="M12 2L2 7v6c0 5 4 9 10 9s10-4 10-9V7l-10-5z"/></svg>
-            <h3>Coming Soon</h3>
-            <p>Exciting new tools on the way.</p>
-        </div>
+  <!-- Features -->
+  <section id="features" class="features">
+    <div class="feature-card">
+      <div class="feature-icon">👁️</div>
+      <h3>Full ESP</h3>
+      <p>Player boxes, tracers, skeletons.</p>
     </div>
-</section>
-
-<section id="showcase">
-    <h2>Showcase</h2>
-    <div class="glass" style="padding: 3rem; text-align: center;">
-        <h3>COMING SOON</h3>
+    <div class="feature-card">
+      <div class="feature-icon">🎯</div>
+      <h3>Aim Visuals</h3>
+      <p>FOV circle, snaplines, target highlight.</p>
     </div>
-</section>
-
-<section id="contact">
-    <h2>Contact</h2>
-    <div class="glass" style="max-width: 500px; margin: 0 auto; padding: 2rem; text-align: center;">
-        <p>Have questions? Reach out.</p>
-        <a href="https://discord.gg/mUwbMhGf" style="color: var(--purple); font-weight:600;">discord.gg/advantage</a>
+  
+    <div class="feature-card">
+      <div class="feature-icon">🚫</div>
+      <h3>Byfron Safe</h3>
+      <p>External only. ReadProcessMemory. No hooks/injection. Undetected since launch.<grok-card data-id="e60877" data-type="citation_card"></grok-card><grok-card data-id="9a0ca6" data-type="citation_card"></grok-card></p>
     </div>
-</section>
+  </section>
 
-<footer class="glass">
-    &copy; 2025 <a href="#" style="color:var(--purple); font-weight:600;">advantage.wtf</a> - All rights reserved.
-</footer>
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-number">1,000+</div>
+      <div class="stat-label">Cheaters Using</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">100%</div>
+      <div class="stat-label">External / Undetected</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number">24/7</div>
+      <div class="stat-label">Discord Updates</div>
+    </div>
+  </div>
 
-<script>
-// Background Dots Animation
-const canvas = document.getElementById('bgCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-let dots = [];
-for(let i=0; i<80; i++){
-    dots.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, vx:(Math.random()-0.5)*0.5, vy:(Math.random()-0.5)*0.5});
-}
-function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    dots.forEach((d,i)=>{
-        d.x+=d.vx; d.y+=d.vy;
-        if(d.x<0||d.x>canvas.width) d.vx*=-1;
-        if(d.y<0||d.y>canvas.height) d.vy*=-1;
-        ctx.beginPath();
-        ctx.arc(d.x,d.y,2,0,Math.PI*2);
-        ctx.fillStyle='rgba(162,107,255,0.5)';
-        ctx.fill();
-        for(let j=i+1;j<dots.length;j++){
-            let d2=dots[j];
-            let dx=d2.x-d.x, dy=d2.y-d.y, dist=Math.sqrt(dx*dx+dy*dy);
-            if(dist<120){
-                ctx.strokeStyle='rgba(162,107,255,'+(1-dist/120)*0.2+')';
-                ctx.lineWidth=1;
-                ctx.beginPath();
-                ctx.moveTo(d.x,d.y);
-                ctx.lineTo(d2.x,d2.y);
-                ctx.stroke();
-            }
-        }
+  <!-- ESP Examples -->
+
+   </section>
+
+  <!-- CTA -->
+  <section style="text-align: center; padding: 4rem 1rem; background: linear-gradient(135deg, rgba(255,0,68,0.1), transparent);">
+    <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Dominate Roblox Now</h2>
+    <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
+      Arsenal, Rivals, Blade Ball, every shooter/PvP. External > internals post-Byfron.
+    </p>
+    <div>
+      <a href="https://moonlightrblx.github.io/download" class="btn-primary" style="font-size: 1.2rem; padding: 1.2rem 2.5rem;">Download Moonlight</a>
+      <a href="https://moonlightrblx.github.io/discord" class="btn-secondary" style="margin-left: 1rem;">Pre-made Scripts (Discord)</a>
+    </div>
+    <p style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+      <code style="background:rgba(255,0,68,0.2); padding:4px 12px; border-radius:8px; border:1px solid #ff0044;">C:\moonlight\scripts\</code> • Alt + VPN recommended
+    </p>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2025 Moonlight • External Roblox cheats. Use at your own risk. Made with blood, sweat, and 3 Red Bulls.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Loader
+    window.addEventListener('load', () => {
+      document.querySelector('.loader-wrapper').classList.add('fade-out');
     });
-    requestAnimationFrame(animate);
-}
-animate();
-window.addEventListener('resize', ()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;});
-lucide.createIcons();
-</script>
+
+    // Mobile menu
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
