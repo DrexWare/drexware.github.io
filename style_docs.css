@@ -251,7 +251,7 @@ body {
 .code-block pre {
     font-family: 'JetBrains Mono', 'Courier New', monospace;
     font-size: 1rem;
-    color: #00ff88;
+    color: #d7eaff;
     margin: 0;
     white-space: pre;
     overflow-x: auto;
@@ -390,17 +390,8 @@ tr:hover {
     .content-section { padding: 80px 5%; }
 }
 
-/* Scroll Reveal Animation */
-.content-section > * {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease;
-}
 
-.content-section.visible > * {
-    opacity: 1;
-    transform: translateY(0);
-}
+
 
 .content-section > *:nth-child(1) { transition-delay: 0.1s; }
 .content-section > *:nth-child(2) { transition-delay: 0.2s; }

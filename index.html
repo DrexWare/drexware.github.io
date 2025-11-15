@@ -3,52 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Moonlight — Roblox External Overlay Cheat</title>
+  <title>moonlight.cc</title>
   <meta name="description" content="Best roblox external. Zero injection. Pure external C++ + Lua scripting." />
       <meta name="theme-color" content="#ff0044">
     
       
-  <link rel="stylesheet" href="style_docs.css" />
+  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
  
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9874246941860477"
      crossorigin="anonymous"></script>
+     <script src="universal.min.js"></script>
   <style>
-    :root {
-      --primary: #ff0044;
-      --bg-dark: #0a0a0a;
-      --bg-card: #111;
-      --text: #eee;
-      --text-muted: #aaa;
-      --warn: #ffaa00;
-    }
-    body { background: var(--bg-dark); color: var(--text); font-family: 'Inter', sans-serif; }
-    .hero { text-align: center; padding: 8rem 1rem 4rem; }
-    .logo-img { height: 80px; margin-bottom: 1.5rem; }
-    .title-main { font-size: 4.5rem; font-weight: 900; margin: 0; background: linear-gradient(135deg, #ff0044, #ff6b9d); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-    .tagline { font-size: 1.5rem; margin: 1rem 0; color: var(--text-muted); }
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; padding: 4rem 1rem; max-width: 1200px; margin: 0 auto; }
-    .feature-card { background: var(--bg-card); border-radius: 16px; padding: 2rem; text-align: center; border: 1px solid #222; transition: all 0.3s ease; }
-    .feature-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(255,0,68,0.15); border-color: var(--primary); }
-    .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
-    .btn-primary { background: var(--primary); color: white; padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }
-    .btn-primary:hover { background: #ff3366; transform: scale(1.05); }
-    .btn-secondary { background: transparent; border: 2px solid var(--primary); color: var(--primary); padding: 1rem 2rem; border-radius: 12px; font-weight: 600; text-decoration: none; margin-left: 1rem; transition: 0.3s; }
-    .btn-secondary:hover { background: rgba(255,0,68,0.1); }
-    .stats { display: flex; justify-content: center; gap: 4rem; padding: 3rem 1rem; flex-wrap: wrap; }
-    .stat { text-align: center; }
-    .stat-number { font-size: 2.5rem; font-weight: 900; color: var(--primary); }
-    .stat-label { color: var(--text-muted); font-size: 1rem; }
-    .warning { background: rgba(255,170,0,0.1); border: 1px solid var(--warn); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; text-align: center; }
-    .warning strong { color: var(--warn); }
-    .code-preview { background: #1a1a1a; border-radius: 8px; padding: 1.5rem; margin: 1rem 0; font-family: 'JetBrains Mono', monospace; border-left: 4px solid var(--primary); }
-    .footer { text-align: center; padding: 3rem 1rem; color: var(--text-muted); font-size: 0.9rem; }
-    @media (max-width: 768px) {
-      .title-main { font-size: 3rem; }
-      .hero { padding-top: 6rem; }
-      .btn-secondary { margin-left: 0; margin-top: 1rem; display: block; }
-    }
+    
   </style>
 </head>
 <body>
@@ -59,13 +27,13 @@
       <img src="assets/logo.png" alt="Moonlight">
     </div>
   </div>
-
+  
   <!-- Header -->
   <header class="header">
     <nav class="navbar">
       <div class="logo">
         <img src="assets/logo.png" alt="Moonlight">
-        <span>Moonlight</span>
+        <span>moonlight.cc</span>
       </div>
       <div class="hamburger">
         <span></span><span></span><span></span>
@@ -82,7 +50,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <img src="assets/logo.png" alt="Moonlight Logo" class="logo-img">
-    <h1 class="title-main">Moonlight</h1>
+    <h1 class="title-main">moonlight.cc</h1>
     <p class="tagline">External Cheat • Byfron Undetected</p>
     <p style="max-width: 700px; margin: 1.5rem auto; color: var(--text-muted); line-height: 1.7;">
       Best roblox external. Zero injection. Pure external C++ + Lua scripting.
@@ -92,9 +60,10 @@
       <a href="https://moonlightrblx.github.io/download" class="btn-primary">Download Free</a>
       <a href="https://moonlightrblx.github.io/discord" class="btn-secondary">Join Discord</a>
     </div>
-    <!-- <div class="warning" style="max-width: 600px; margin: 2rem auto;">
+    <span id="update-info" style="font-size:.8em;opacity:.7;margin-left:.5rem;">(Loading...)</span>
+   <!-- <div class="warning" style="max-width: 600px; margin: 2rem auto;">
       <strong>⚠️ Alt accounts only. Roblox TOS violation. HWID/IP ban risk.</strong><br>
-      External = low detection (no DLL). Use VPN/Spoofer for mains.
+      External = low detection. Use VPN/Spoofer for mains.
     </div> -->
   </section>
 
@@ -118,7 +87,6 @@
     </div>
   </section>
 
-  <!-- Stats -->
   <div class="stats">
     <div class="stat">
       <div class="stat-number">1,000+</div>
@@ -134,11 +102,10 @@
     </div>
   </div>
 
-  <!-- ESP Examples -->
 
    </section>
 
-  <!-- CTA -->
+
   <section style="text-align: center; padding: 4rem 1rem; background: linear-gradient(135deg, rgba(255,0,68,0.1), transparent);">
     <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Dominate Roblox Now</h2>
     <p style="color: var(--text-muted); max-width: 600px; margin: 0 auto 2rem;">
@@ -153,42 +120,12 @@
     </p>
   </section>
 
-  <!-- Footer -->
+
   <footer class="footer">
-    <p>© 2025 Moonlight • External Roblox cheats. Use at your own risk. Made with blood, sweat, and 3 Red Bulls.</p>
+    <p>© 2025 Moonlight • External Roblox cheats. Use at your own risk.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script>
-    // Loader
-    window.addEventListener('load', () => {
-      document.querySelector('.loader-wrapper').classList.add('fade-out');
-    });
 
-    // Mobile menu
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    hamburger.addEventListener('click', () => {
-      hamburger.classList.toggle('active');
-      navLinks.classList.toggle('active');
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-      });
-    });
-
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(a => {
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
-    });
-  </script>
+ 
 </body>
 </html>

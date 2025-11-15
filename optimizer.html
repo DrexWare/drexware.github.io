@@ -231,19 +231,7 @@
         });
 
         // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(q => {
-            q.addEventListener('click', () => {
-                const expanded = q.getAttribute('aria-expanded') === 'true';
-                document.querySelectorAll('.faq-question').forEach(other => {
-                    other.setAttribute('aria-expanded', 'false');
-                    other.nextElementSibling.classList.remove('active');
-                });
-                if (!expanded) {
-                    q.setAttribute('aria-expanded', 'true');
-                    q.nextElementSibling.classList.add('active');
-                }
-            });
-        });
+       
     </script>
     <script>
     // Card mouse-follow glow effect
