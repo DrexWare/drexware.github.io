@@ -1,0 +1,300 @@
+Talk is cheap. Show me the code. - Linus Torvalds
+Programs must be written for people to read, and only incidentally for machines to execute. - Harold Abelson
+First, solve the problem. Then, write the code. - John Johnson
+Experience is the name everyone gives to their mistakes. - Oscar Wilde
+In order to be irreplaceable, one must always be different. - Coco Chanel
+Simplicity is prerequisite for reliability. - Edsger W. Dijkstra
+Code is like humor. When you have to explain it, it’s bad. - Cory House
+Fix the cause, not the symptom. - Steve Maguire
+Make it work, make it right, make it fast. - Kent Beck
+The most damaging phrase in the language is: “We’ve always done it this way.” - Grace Hopper
+Walking on water and developing software from a specification are easy if both are frozen. - Edward V. Berard
+It’s not a bug. It’s an undocumented feature. - Anonymous
+Computers are fast; programmers keep it slow. - Anonymous
+The function of good software is to make the complex appear simple. - Grady Booch
+Learning to write programs stretches your mind. - Bill Gates
+Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler
+Premature optimization is the root of all evil. - Donald Knuth
+The best error message is the one that never shows up. - Thomas Fuchs
+Before software can be reusable it must first be usable. - Ralph Johnson
+If debugging is the process of removing bugs, then programming must be the process of putting them in. - Edsger W. Dijkstra
+Simplicity is the soul of efficiency. - Austin Freeman
+A good programmer is someone who looks both ways before crossing a one-way street. - Doug Linder
+Programming isn’t about what you know; it’s about what you can figure out. - Chris Pine
+Software undergoes beta testing shortly before it’s released. Beta is Latin for ‘still doesn’t work.’ - Anonymous
+The best code is no code at all. - Jeff Atwood
+If you automate a mess, you get an automated mess. - Rod Michael
+Quality is not an act; it is a habit. - Aristotle
+Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill
+Logic will get you from A to B. Imagination will take you everywhere. - Albert Einstein
+Hard work beats talent when talent doesn't work hard. - Tim Notke
+The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie
+Simplicity is the ultimate sophistication. - Leonardo da Vinci
+Innovation distinguishes between a leader and a follower. - Steve Jobs
+Knowledge is power. - Francis Bacon
+Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday’s code. - Dan Salomon
+Software is a great combination of artistry and engineering. - Bill Gates
+If you think math is hard, try programming. - Anonymous
+Good code is its own best documentation. - Steve McConnell
+The purpose of software engineering is to control complexity, not to create it. - Pamela Zave
+The best performance improvement is the transition from the nonworking state to the working state. - John Ousterhout
+Deleted code is debugged code. - Jeff Sickel
+You can’t have great software without a great team. - Jim McCarthy
+Programming is the art of algorithm design and the craft of debugging errant code. - Ellen Ullman
+Bad programmers worry about the code. Good programmers worry about data structures and their relationships. - Linus Torvalds
+Software and cathedrals are much the same — first we build them, then we pray. - Sam Redwine
+A primary cause of complexity is that software vendors uncritically adopt almost any feature that users want. - Niklaus Wirth
+Everything should be made as simple as possible, but not simpler. - Albert Einstein
+Perfect is the enemy of good. - Voltaire
+When in doubt, use brute force. - Ken Thompson
+The most important property of a program is whether it accomplishes the intention of its user. - C.A.R. Hoare
+It is easier to change the specification to fit the program than vice versa. - Alan Perlis
+The best thing about a boolean is even if you are wrong, you are only off by a bit. - Anonymous
+Programs are meant to be read by humans and executed by computers. - Donald Knuth
+Debugging becomes significantly easier if you first admit that you are the problem. - William Laeder
+There are two ways to write error-free programs; only the third one works. - Alan Perlis
+Programmers are tools for converting caffeine into code. - Anonymous
+Software is eating the world. - Marc Andreessen
+Technology is best when it brings people together. - Matt Mullenweg
+If at first you don’t succeed; call it version 1.0. - Anonymous
+Simplicity carried to the extreme becomes elegance. - Jon Franklin
+Optimism is an occupational hazard of programming. Feedback is the treatment. - Kent Beck
+The best way to predict the future is to invent it. - Alan Kay
+Great software is built by great teams, not by great loners. - Anonymous
+Every great developer you know got there by solving problems they were unqualified to solve until they actually did it. - Patrick McKenzie
+The only constant in software is change. - Anonymous
+Good software is a good mix of craftsmanship and engineering. - Anonymous
+Programming is thinking, not typing. - Casey Patton
+The difference between a good programmer and a great one is the ability to foresee errors. - Anonymous
+A program is never less than 90% complete, and never more than 95% complete. - Terry Baker
+When debugging, novices insert corrective code; experts remove defective code. - Richard Pattis
+The most effective debugging tool is still careful thought, combined with judiciously placed print statements. - Brian Kernighan
+Software is hard. - Donald Knuth
+You can’t rush a masterpiece, but you can definitely debug one. - Anonymous
+Simple things should be simple, complex things should be possible. - Alan Kay
+Good judgment comes from experience, and experience comes from bad judgment. - Rita Mae Brown
+The mind is not a vessel to be filled but a fire to be kindled. - Plutarch
+Learning never exhausts the mind. - Leonardo da Vinci
+An investment in knowledge pays the best interest. - Benjamin Franklin
+The secret of getting ahead is getting started. - Mark Twain
+Stay hungry, stay foolish. - Steve Jobs
+If you don’t make mistakes, you’re not working on hard enough problems. - Frank Wilczek
+Failure is simply the opportunity to begin again, this time more intelligently. - Henry Ford
+Do not wait to strike till the iron is hot; but make it hot by striking. - William Butler Yeats
+Courage is resistance to fear, mastery of fear—not absence of fear. - Mark Twain
+Great things are done by a series of small things brought together. - Vincent Van Gogh
+What we think, we become. - Buddha
+Action is the foundational key to all success. - Pablo Picasso
+What you do today can improve all your tomorrows. - Ralph Marston
+The future depends on what you do today. - Mahatma Gandhi
+Dream big and dare to fail. - Norman Vaughan
+Do something today that your future self will thank you for. - Anonymous
+The expert in anything was once a beginner. - Helen Hayes
+Your life does not get better by chance, it gets better by change. - Jim Rohn
+Don’t watch the clock; do what it does. Keep going. - Sam Levenson
+The best time to plant a tree was 20 years ago. The second-best time is now. - Chinese Proverb
+We generate fears while we sit. We overcome them by action. - Dr. Henry Link
+Discipline is choosing what you want most over what you want now. - Abraham Lincoln
+Success is the sum of small efforts, repeated day in and day out. - Robert Collier
+Hard choices, easy life. Easy choices, hard life. - Jerzy Gregorek
+You miss 100% of the shots you don’t take. - Wayne Gretzky
+Opportunities don't happen. You create them. - Chris Grosser
+The harder you work for something, the greater you’ll feel when you achieve it. - Anonymous
+Do what you can, with what you have, where you are. - Theodore Roosevelt
+Act as if what you do makes a difference. It does. - William James
+What lies behind us and what lies before us are tiny matters compared to what lies within us. - Ralph Waldo Emerson
+Well done is better than well said. - Benjamin Franklin
+If you want to lift yourself up, lift up someone else. - Booker T. Washington
+Everything you’ve ever wanted is on the other side of fear. - George Addair
+Opportunities multiply as they are seized. - Sun Tzu
+The journey of a thousand miles begins with one step. - Lao Tzu
+Don’t wait. The time will never be just right. - Napoleon Hill
+What we achieve inwardly will change outer reality. - Plutarch
+Action is the antidote to despair. - Joan Baez
+Success usually comes to those who are too busy to be looking for it. - Henry David Thoreau
+Don’t be pushed around by the fears in your mind. - Roy T. Bennett
+If you’re going through hell, keep going. - Winston Churchill
+It's always too early to quit. - Norman Vincent Peale
+We become what we repeatedly do. - Aristotle
+Do one thing every day that scares you. - Eleanor Roosevelt
+Believe you can and you're halfway there. - Theodore Roosevelt
+He who is not courageous enough to take risks will accomplish nothing in life. - Muhammad Ali
+What you get by achieving your goals is not as important as what you become by achieving your goals. - Zig Ziglar
+No pressure, no diamonds. - Thomas Carlyle
+Don't let yesterday take up too much of today. - Will Rogers
+Success is walking from failure to failure with no loss of enthusiasm. - Winston Churchill
+Success is how high you bounce when you hit bottom. - George S. Patton
+Whether you think you can or you think you can’t, you’re right. - Henry Ford
+Life is 10% what happens to us and 90% how we react to it. - Charles R. Swindoll
+Start where you are. Use what you have. Do what you can. - Arthur Ashe
+The secret of getting ahead is getting started. - Mark Twain
+Failure is not falling down but refusing to get up. - Chinese Proverb
+Never confuse a single defeat with a final defeat. - F. Scott Fitzgerald
+It does not matter how slowly you go as long as you do not stop. - Confucius
+Always make a total effort, even when the odds are against you. - Arnold Palmer
+Strength does not come from physical capacity. It comes from an indomitable will. - Mahatma Gandhi
+Act or accept. - Anonymous
+You can't build a reputation on what you are going to do. - Henry Ford
+Setting goals is the first step in turning the invisible into the visible. - Tony Robbins
+Work hard in silence, let your success be the noise. - Frank Ocean
+Success demands singleness of purpose. - Vince Lombardi
+It always seems impossible until it's done. - Nelson Mandela
+The man who moves a mountain begins by carrying away small stones. - Confucius
+If you want something you’ve never had, you must be willing to do something you’ve never done. - Thomas Jefferson
+Don’t count the days, make the days count. - Muhammad Ali
+Be stronger than your excuses. - Anonymous
+If you can't do great things, do small things in a great way. - Napoleon Hill
+We are what we repeatedly do. Excellence, then, is not an act, but a habit. - Aristotle
+A year from now you may wish you had started today. - Karen Lamb
+Push yourself, because no one else is going to do it for you. - Anonymous
+Great things never come from comfort zones. - Anonymous
+Dream it. Wish it. Do it. - Anonymous
+Success doesn’t just find you. You have to go out and get it. - Anonymous
+Little things make big things happen. - John Wooden
+Do something today that your future self will thank you for. - Anonymous
+The harder you work, the luckier you get. - Gary Player
+Good things come to people who wait, but better things come to those who go out and get them. - Anonymous
+Your only limit is your mind. - Anonymous
+Don’t stop when you’re tired. Stop when you’re done. - Anonymous
+Wake up with determination. Go to bed with satisfaction. - Anonymous
+The difference between ordinary and extraordinary is that little extra. - Jimmy Johnson
+Success is the progressive realization of a worthy goal. - Earl Nightingale
+No guts, no glory. - Robert E. Lee
+Doubt kills more dreams than failure ever will. - Suzy Kassem
+Failure will never overtake me if my determination to succeed is strong enough. - Og Mandino
+Be patient. Good things take time. - Anonymous
+Make each day your masterpiece. - John Wooden
+It’s not whether you get knocked down; it’s whether you get up. - Vince Lombardi
+Failure is the condiment that gives success its flavor. - Truman Capote
+The best way out is always through. - Robert Frost
+The only way to do great work is to love what you do. - Steve Jobs
+Genius is 1% inspiration and 99% perspiration. - Thomas Edison
+If opportunity doesn’t knock, build a door. - Milton Berle
+A goal without a plan is just a wish. - Antoine de Saint-Exupéry
+If you’re not willing to risk the usual, you’ll have to settle for the ordinary. - Jim Rohn
+Your passion is waiting for your courage to catch up. - Isabelle Lafleche
+Everything you can imagine is real. - Pablo Picasso
+The way to get started is to quit talking and begin doing. - Walt Disney
+Never give up on a dream just because of the time it will take to accomplish it. The time will pass anyway. - Earl Nightingale
+We must embrace pain and burn it as fuel for our journey. - Kenji Miyazawa
+Don’t let the fear of losing be greater than the excitement of winning. - Robert Kiyosaki
+Success is not in what you have, but who you are. - Bo Bennett
+A person who never made a mistake never tried anything new. - Albert Einstein
+Be yourself; everyone else is already taken. - Oscar Wilde
+Everything has beauty, but not everyone sees it. - Confucius
+Believe and act as if it were impossible to fail. - Charles F. Kettering
+Do not wait for leaders; do it alone, person to person. - Mother Teresa
+Action expresses priorities. - Mahatma Gandhi
+You don’t have to be great to start, but you have to start to be great. - Zig Ziglar
+Don’t limit your challenges. Challenge your limits. - Anonymous
+Success means doing the best we can with what we have. - Zig Ziglar
+The will to win means nothing without the will to prepare. - Juma Ikangaa
+Once you choose hope, anything’s possible. - Christopher Reeve
+Big journeys begin with small steps. - Anonymous
+Success is a state of mind. If you want success, start thinking of yourself as a success. - Joyce Brothers
+The secret of success is constancy to purpose. - Benjamin Disraeli
+You don’t always need a plan. Sometimes you just need to breathe, trust, and see what happens. - Mandy Hale
+Turn your wounds into wisdom. - Oprah Winfrey
+Failure is success in progress. - Albert Einstein
+The soul becomes dyed with the color of its thoughts. - Marcus Aurelius
+Attitude is a little thing that makes a big difference. - Winston Churchill
+Change your thoughts and you change your world. - Norman Vincent Peale
+Believe you deserve it and the universe will serve it. - Anonymous
+What consumes your mind controls your life. - Anonymous
+In the middle of difficulty lies opportunity. - Albert Einstein
+Life is either a daring adventure or nothing at all. - Helen Keller
+The only limits in life are the ones you make. - Anonymous
+Failure defeats losers, failure inspires winners. - Robert T. Kiyosaki
+Champions keep playing until they get it right. - Billie Jean King
+Success is a journey, not a destination. - Arthur Ashe
+Growth begins at the end of your comfort zone. - Neale Donald Walsch
+Don’t ruin a good today by thinking about a bad yesterday. - Anonymous
+Small steps in the right direction can turn out to be the biggest steps of your life. - Anonymous
+Your future is created by what you do today, not tomorrow. - Robert Kiyosaki
+Fear is temporary. Regret is forever. - Anonymous
+If you fell down yesterday, stand up today. - H.G. Wells
+Luck is what happens when preparation meets opportunity. - Seneca
+The only place where success comes before work is in the dictionary. - Vidal Sassoon
+A setback is a setup for a comeback. - T.D. Jakes
+Starve your distractions, feed your focus. - Anonymous
+You become unstoppable when you work on things people can't take away: mindset, skill, character. - Anonymous
+Don’t call it a dream, call it a plan. - Anonymous
+When the why is clear, the how is easy. - Anonymous
+Success is never owned; it is rented—and the rent is due every day. - Rory Vaden
+Your attitude determines your direction. - Anonymous
+Stay patient and trust your journey. - Anonymous
+Success starts with self-discipline. - Anonymous
+Discipline is doing what needs to be done even if you don’t want to. - Anonymous
+Stars can’t shine without darkness. - D.H. Sidebottom
+Don’t fear failure. Fear being in the exact same place next year. - Anonymous
+Your life is as good as your mindset. - Anonymous
+What you think, you become. What you feel, you attract. What you imagine, you create. - Buddha
+Live less out of habit and more out of intent. - Anonymous
+The only person you are destined to become is the person you decide to be. - Ralph Waldo Emerson
+Keep your face always toward the sunshine—and shadows will fall behind you. - Walt Whitman
+Success is liking yourself, liking what you do, and liking how you do it. - Maya Angelou
+You don’t get what you wish for; you get what you work for. - Anonymous
+Comfort is the enemy of achievement. - Farrah Gray
+Your potential is endless. - Anonymous
+Be willing to be a beginner every single day. - Meister Eckhart
+A smooth sea never made a skilled sailor. - Franklin D. Roosevelt
+Results happen over time, not overnight. - Anonymous
+Work until your idols become rivals. - Anonymous
+You are stronger than you think. - Anonymous
+Every moment is a fresh beginning. - T.S. Eliot
+Success is the sum of details. - Harvey S. Firestone
+Today is your opportunity to build the tomorrow you want. - Ken Poirot
+Don’t be afraid to give up the good to go for the great. - John D. Rockefeller
+Nothing is impossible to a willing heart. - John Heywood
+If it doesn’t challenge you, it won’t change you. - Fred DeVito
+Act as if it were impossible to fail. - Dorothea Brande
+Failure builds character. - Anonymous
+When you feel like quitting, remember why you started. - Anonymous
+Great things take time. - Anonymous
+Where focus goes, energy flows. - Tony Robbins
+Every accomplishment starts with the decision to try. - John F. Kennedy
+If you want to change the world, change yourself. - Mahatma Gandhi
+Turn your can'ts into cans and your dreams into plans. - Anonymous
+Never stop learning, because life never stops teaching. - Anonymous
+Push harder than yesterday if you want a different tomorrow. - Anonymous
+Success doesn’t come from what you do occasionally. It comes from what you do consistently. - Marie Forleo
+Dream big. Start small. Act now. - Robin Sharma
+If you can dream it, you can do it. - Walt Disney
+Success is not for the lazy. - Anonymous
+Be so good they can’t ignore you. - Steve Martin
+Do the best you can until you know better. Then when you know better, do better. - Maya Angelou
+Every strike brings me closer to the next home run. - Babe Ruth
+Never let the fear of striking out keep you from playing the game. - Babe Ruth
+Everything you’ve ever wanted is on the other side of discipline. - Anonymous
+Success is built on persistence, not perfection. - Anonymous
+Courage is the commitment to begin without any guarantee of success. - Johann Wolfgang von Goethe
+You're allowed to be both a masterpiece and a work in progress. - Sophia Bush
+The best revenge is massive success. - Frank Sinatra
+What we fear doing most is usually what we most need to do. - Tim Ferriss
+Stay afraid, but do it anyway. - Carrie Fisher
+What you do makes a difference, and you have to decide what kind of difference you want to make. - Jane Goodall
+If you're tired, learn to rest, not to quit. - Banksy
+You don’t find willpower, you create it. - Anonymous
+If it was easy, everyone would do it. - Anonymous
+Purpose fuels passion. - Anonymous
+You'll never change your life until you change something you do daily. - Mike Murdock
+If you want it, work for it. - Anonymous
+The key to success is to start before you are ready. - Marie Forleo
+Energy and persistence conquer all things. - Benjamin Franklin
+Nothing worth having comes easy. - Theodore Roosevelt
+Don’t adapt to the energy in the room — influence the energy in the room. - Anonymous
+Your habits determine your future. - Jack Canfield
+The grind never stops. - Anonymous
+Stay focused, stay humble, stay driven. - Anonymous
+A river cuts through rock not because of its power, but because of its persistence. - Jim Watkins
+What you do today matters more than what you plan to do tomorrow. - Anonymous
+Consistency is harder when no one is clapping for you. - Anonymous
+Be the hardest worker in the room. - Dwayne Johnson
+Don't let small minds convince you that your dreams are too big. - Anonymous
+You’re braver than you believe, stronger than you seem, and smarter than you think. - A.A. Milne
+Success is earned, not given. - Anonymous
+Work hard, stay humble. - Anonymous
+Don't wish for it; work for it. - Anonymous
+Doubt kills dreams. Discipline builds empires. - Anonymous
+Make it happen. Shock everyone. - Anonymous
+
