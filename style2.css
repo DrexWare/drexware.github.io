@@ -9,8 +9,8 @@
             justify-content:center;
             align-items:center;
             padding:2rem;
-            background:radial-gradient(circle at top left,rgba(255,0,68,.15)0%,transparent 50%),
-                       radial-gradient(circle at bottom right,rgba(255,0,68,.1)0%,transparent 60%),
+            background:radial-gradient(circle at top left,rgba(55, 0, 255, 0.15)0%,transparent 50%),
+                       radial-gradient(circle at bottom right,rgba(25, 0, 255, 0.1)0%,transparent 60%),
                        #0a0a0a;
             overflow:hidden;
         }
@@ -30,12 +30,12 @@
         .container{
             background:rgba(20,20,20,.7);
             backdrop-filter:blur(16px);
-            border:1px solid rgba(255,0,68,.3);
+            border:1px solid rgba(0, 4, 255, 0.3);
             border-radius:20px;
             padding:4rem 3rem;
             max-width:720px;
             width:100%;
-            box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(255,0,68,.2);
+            box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(4, 0, 255, 0.2);
             position:relative;
             overflow:hidden;
             transition:all .4s ease;
@@ -43,14 +43,14 @@
         }
         .container:hover{
             transform:translateY(-10px);
-            border-color:#ff0044;
-            box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(255,0,68,.4);
+            border-color:#0011ff;
+            box-shadow:0 30px 80px rgba(0,0,0,.7),0 0 60px rgba(47, 0, 255, 0.4);
         }
         .container::before{
             content:'';position:absolute;
             top:var(--mouse-y,50%);left:var(--mouse-x,50%);
             width:400px;height:400px;
-            background:radial-gradient(circle,rgba(255,0,68,.3)0%,transparent 70%);
+            background:radial-gradient(circle,rgba(17, 0, 255, 0.3)0%,transparent 70%);
             transform:translate(-50%,-50%);
             opacity:0;transition:opacity .5s;pointer-events:none;
         }
@@ -67,14 +67,14 @@
         .title-block{flex:1;text-align:left;}
         h1{
             font-size:3.2rem;font-weight:900;
-            background:linear-gradient(135deg,#ff0044,#ff4d8a);
+            background:linear-gradient(135deg,#1100ff,#4d85ff);
             -webkit-background-clip:text;
             -webkit-text-fill-color:transparent;
             background-clip:text;
             margin:0;letter-spacing:-1px;
         }
         .subtitle{
-            font-size:1.1rem;color:#ff3366;font-weight:600;
+            font-size:1.1rem;color:#4733ff;font-weight:600;
             margin-top:.3rem;text-transform:uppercase;letter-spacing:2px;
         }
 
@@ -101,11 +101,11 @@
         /* ==== DOWNLOAD BUTTON ==== */
         .download-button{
             display:inline-flex;align-items:center;gap:12px;
-            background:linear-gradient(135deg,#ff0044,#ff3366);
+            background:linear-gradient(135deg,#4400ff,#3341ff);
             color:#fff;padding:1.1rem 2.8rem;
             border-radius:50px;text-decoration:none;
             font-weight:700;font-size:1.1rem;letter-spacing:.5px;
-            box-shadow:0 10px 30px rgba(255,0,68,.4);
+            box-shadow:0 10px 30px rgba(0, 26, 255, 0.4);
             transition:all .3s ease;position:relative;overflow:hidden;
         }
         .download-button::before{
