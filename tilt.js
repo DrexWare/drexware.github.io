@@ -1,1 +1,26 @@
-const tiltCard=document.querySelector(".tilt-card"),img=tiltCard.querySelector("img"),maxTilt=12,perspective=1e3,speed=.15;tiltCard.style.perspective="1000px",img.style.transition="transform 0.15s ease-out",tiltCard.addEventListener("mousemove",(t=>{const e=tiltCard.getBoundingClientRect(),r=t.clientX-e.left,i=t.clientY-e.top,a=e.width/2,l=e.height/2,s=(i-l)/l*12,d=(a-r)/a*12;img.style.transform=`rotateX(${s}deg) rotateY(${d}deg) scale(1.05)`})),tiltCard.addEventListener("mouseleave",(()=>{img.style.transform="rotateX(0deg) rotateY(0deg) scale(1)"}));
+const tiltCard = document.querySelector('.tilt-card');
+const img = tiltCard.querySelector('img');
+
+const maxTilt = 12;      // degrees
+const perspective = 1000;
+const speed = 0.15;      // transition time (seconds)
+
+tiltCard.style.perspective = `${perspective}px`;
+img.style.transition = `transform ${speed}s ease-out`;
+
+tiltCard.addEventListener('mousemove', e => {
+    const rect = tiltCard.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+
+    const tiltX = ((y - centerY) / centerY) * maxTilt;
+    const tiltY = ((centerX - x) / centerX) * maxTilt;
+
+    img.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg) scale(1.05)`;
+});
+
+tiltCard.addEventListener('mouseleave', () => {
+    img.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+});
