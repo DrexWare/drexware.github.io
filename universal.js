@@ -1,1 +1,76 @@
-async function updateReleaseDate(){try{const e=await fetch("https://api.github.com/repos/moonlightrblx/roblox-script/releases/latest");if(!e.ok)throw new Error("API error");const t=await e.json(),a=new Date(t.published_at).toLocaleDateString("en-US",{year:"numeric",month:"short",day:"numeric"});document.getElementById("update-info").textContent=`(Updated: ${a})`}catch(e){console.error(e),document.getElementById("update-info").textContent="(Check GitHub for latest)"}}window.addEventListener("load",updateReleaseDate),window.addEventListener("load",(()=>{document.querySelector(".loader-wrapper").classList.add("fade-out")}));const hamburger=document.querySelector(".hamburger"),navLinks=document.querySelector(".nav-links");hamburger.addEventListener("click",(()=>{hamburger.classList.toggle("active"),navLinks.classList.toggle("active")})),document.querySelectorAll(".nav-links a").forEach((e=>{e.addEventListener("click",(()=>{hamburger.classList.remove("active"),navLinks.classList.remove("active")}))})),document.querySelectorAll(".copy-btn").forEach((e=>{e.addEventListener("click",(async()=>{const t=e.getAttribute("data-target"),a=document.getElementById(t).innerText;try{await navigator.clipboard.writeText(a),e.innerText="Copied!",e.classList.add("copied"),setTimeout((()=>{e.innerText="Copy",e.classList.remove("copied")}),1500)}catch(t){e.innerText="Failed"}}))})),document.querySelectorAll('a[href^="#"]').forEach((e=>{e.addEventListener("click",(t=>{t.preventDefault();const a=document.querySelector(e.getAttribute("href"));a&&a.scrollIntoView({behavior:"smooth"})}))})),document.querySelectorAll(".faq-question").forEach((e=>{e.addEventListener("click",(()=>{const t="true"===e.getAttribute("aria-expanded");document.querySelectorAll(".faq-question").forEach((e=>{e.setAttribute("aria-expanded","false"),e.nextElementSibling.classList.remove("active")})),t||(e.setAttribute("aria-expanded","true"),e.nextElementSibling.classList.add("active"))}))})),window.addEventListener("load",(()=>{setTimeout((()=>document.querySelector(".loader-wrapper").classList.add("fade-out")),600)}));
+async function updateReleaseDate() {
+    try {
+        const r = await fetch('https://api.github.com/repos/moonlightrblx/roblox-script/releases/latest');
+        if (!r.ok) throw new Error('API error');
+        const d = await r.json();
+        const date = new Date(d.published_at);
+        const txt = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+        document.getElementById('update-info').textContent = `(Updated: ${txt})`;
+    } catch (e) {
+        console.error(e);
+        document.getElementById('update-info').textContent = '(Check GitHub for latest)';
+    }
+}
+window.addEventListener('load', updateReleaseDate);
+
+window.addEventListener('load', () => {
+    document.querySelector('.loader-wrapper').classList.add('fade-out');
+});
+
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+
+document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', async () => {
+        const id = btn.getAttribute('data-target');
+        const code = document.getElementById(id).innerText;
+        try {
+            await navigator.clipboard.writeText(code);
+            btn.innerText = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(() => {
+                btn.innerText = 'Copy';
+                btn.classList.remove('copied');
+            }, 1500);
+        } catch (e) {
+            btn.innerText = 'Failed';
+        }
+    });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+document.querySelectorAll('.faq-question').forEach(q => {
+    q.addEventListener('click', () => {
+        const expanded = q.getAttribute('aria-expanded') === 'true';
+        document.querySelectorAll('.faq-question').forEach(other => {
+            other.setAttribute('aria-expanded', 'false');
+            other.nextElementSibling.classList.remove('active');
+        });
+        if (!expanded) {
+            q.setAttribute('aria-expanded', 'true');
+            q.nextElementSibling.classList.add('active');
+        }
+    });
+});
+
+window.addEventListener('load', () => {
+    setTimeout(() => document.querySelector('.loader-wrapper').classList.add('fade-out'), 600);
+});
