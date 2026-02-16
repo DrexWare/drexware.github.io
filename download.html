@@ -3,24 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moonlight - Installer</title>
-    <meta name="description" content="Download the official Moonlight.cc external installer. Fast, secure, and always up to date.">
+    <title>Moonlight External - Installer</title>
+    <meta name="description" content="Download the latest Moonlight external release. Fast, secure, updated regularly.">
     <meta name="theme-color" content="#ff0044">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
 
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9874246941860477"
-            crossorigin="anonymous"></script>
-         <link rel="stylesheet" href="style2.css" />
-<script src="universal.js"></script>
-
+    <link rel="stylesheet" href="style2.css" />
+    <script src="universal.js"></script>
+    <!-- Removed adsbygoogle script – add back only if needed -->
 </head>
 <body>
     <div class="loader-wrapper">
-        <div class="loader"><img src="assets/logo.png" alt="Moonlight Logo"></div>
+        <div class="loader">
+            <img src="assets/logo.png" alt="Moonlight Logo">
+        </div>
     </div>
+
     <div class="container">
         <div class="header">
             <div class="title-block">
@@ -28,31 +29,32 @@
                 <div class="subtitle">external</div>
             </div>
             <div class="tilt-card">
-                <img src="assets/menu.png" alt="Moonlight UI">
+                <img src="assets/menu.png" alt="Moonlight UI Preview">
             </div>
         </div>
 
-        <p>Download and install the latest binary release of <strong>moonlight.cc</strong> external.<br>Safe, fast, and updated daily.</p>
+      
 
         <a class="download-button"
-           href="https://bstlar.com/4TZ/skibidi-toliet">
+           href="https://bstlar.com/4TZ/skibidi-toliet"
+           target="_blank" rel="noopener noreferrer">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                  fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                 <polyline points="7 10 12 15 17 10"></polyline>
                 <line x1="12" y1="15" x2="12" y2="3"></line>
             </svg>
-            Download Installer
+            Download Latest Version
         </a>
 
         <div class="footer">
-            <span id="update-info" style="font-size:.8em;opacity:.7;margin-left:.5rem;">(Loading...)</span>
-            <p>Need help? Join our Discord.</p>
+            <span id="update-info" style="font-size:0.8em; opacity:0.7; margin-left:0.5rem;">(Checking for updates...)</span>
+            <p>Need help? Join our Discord community.</p>
         </div>
     </div>
 
-  
     <script>
+        // Mouse tilt effect
         const container = document.querySelector('.container');
         container.addEventListener('mousemove', e => {
             const rect = container.getBoundingClientRect();
