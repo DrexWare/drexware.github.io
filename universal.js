@@ -8,7 +8,7 @@ async function updateRepoDate() {
         document.getElementById('update-info').textContent = `(Last updated: ${txt})`;
     } catch (e) {
         console.error(e);
-        document.getElementById('update-info').textContent = '(Check GitHub for latest)';
+        document.getElementById('update-info').textContent = 'Failed to fetch update date (try using a vpn)';
     }
 }
 window.addEventListener('load', updateRepoDate);
