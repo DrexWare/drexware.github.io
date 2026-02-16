@@ -1,17 +1,17 @@
-async function updateReleaseDate() {
+async function updateRepoDate() {
     try {
-        const r = await fetch('https://api.github.com/repos/moonlightrblx/roblox-script/releases/latest');
+        const r = await fetch('https://api.github.com/repos/moonlightrblx/roblox-script');
         if (!r.ok) throw new Error('API error');
         const d = await r.json();
-        const date = new Date(d.published_at);
+        const date = new Date(d.updated_at); // or d.pushed_at if you want last push
         const txt = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        document.getElementById('update-info').textContent = `(Updated: ${txt})`;
+        document.getElementById('update-info').textContent = `(Last updated: ${txt})`;
     } catch (e) {
         console.error(e);
         document.getElementById('update-info').textContent = '(Check GitHub for latest)';
     }
 }
-window.addEventListener('load', updateReleaseDate);
+window.addEventListener('load', updateRepoDate);
 
 window.addEventListener('load', () => {
     document.querySelector('.loader-wrapper').classList.add('fade-out');
@@ -73,4 +73,5 @@ document.querySelectorAll('.faq-question').forEach(q => {
 
 window.addEventListener('load', () => {
     setTimeout(() => document.querySelector('.loader-wrapper').classList.add('fade-out'), 600);
+
 });
