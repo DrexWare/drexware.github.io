@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Are You a Femboy? ✦ The Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink: #f4a7c3;
+    --pink-deep: #d6618a;
+    --pink-light: #fde8f2;
+    --lavender: #c9b8f0;
+    --lav-deep: #7c5cbf;
+    --cream: #fdf7f0;
+    --charcoal: #2a1f2e;
+    --muted: #7a6b80;
+    --soft-border: rgba(212, 150, 185, 0.25);
+    --card-bg: rgba(255,255,255,0.75);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated bg */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(244,167,195,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 80% 80%, rgba(201,184,240,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 50% at 60% 30%, rgba(253,232,242,0.3) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    padding: 3rem 0 2.5rem;
+    animation: fadeDown 0.7s ease both;
+  }
+
+  .header-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, var(--pink), var(--lavender));
+    color: white;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 16px;
+    border-radius: 999px;
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    line-height: 1.1;
+    color: var(--charcoal);
+    margin-bottom: 0.8rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    background: linear-gradient(135deg, var(--pink-deep), var(--lav-deep));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .subtitle {
+    color: var(--muted);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* Progress */
+  .progress-wrap {
+    margin: 2rem 0 1.5rem;
+    animation: fadeIn 0.5s ease both 0.3s;
+  }
+
+  .progress-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  .progress-bar {
+    height: 4px;
+    background: rgba(212,150,185,0.2);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--lavender));
+    border-radius: 99px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 0%;
+  }
+
+  /* Question card */
+  .question-card {
+    background: var(--card-bg);
+    border: 1px solid var(--soft-border);
+    border-radius: 20px;
+    padding: 2.5rem 2.5rem 2rem;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 40px rgba(180,100,140,0.08), 0 1px 0 rgba(255,255,255,0.8) inset;
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .q-number {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--pink-deep);
+    font-weight: 500;
+    margin-bottom: 1rem;
+  }
+
+  .q-text {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 3.5vw, 1.55rem);
+    line-height: 1.45;
+    color: var(--charcoal);
+    margin-bottom: 1.8rem;
+  }
+
+  /* Options */
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .option-btn {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--soft-border);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 400;
+    color: var(--charcoal);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(244,167,195,0.12), rgba(201,184,240,0.12));
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .option-btn:hover { border-color: var(--pink); transform: translateY(-1px); }
+  .option-btn:hover::before { opacity: 1; }
+
+  .option-btn.selected {
+    border-color: var(--pink-deep);
+    background: rgba(244, 167, 195, 0.12);
+  }
+
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: rgba(212,150,185,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--pink-deep);
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .option-btn.selected .option-letter {
+    background: var(--pink-deep);
+    color: white;
+  }
+
+  /* Navigation */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    gap: 12px;
+  }
+
+  .btn {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0.7rem 1.8rem;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    letter-spacing: 0.02em;
+  }
+
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid var(--soft-border);
+    color: var(--muted);
+  }
+
+  .btn-ghost:hover { border-color: var(--pink); color: var(--charcoal); }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--pink-deep), var(--lav-deep));
+    color: white;
+    box-shadow: 0 4px 16px rgba(214,97,138,0.3);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(214,97,138,0.4); }
+  .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+  /* Floating score indicator */
+  .score-float {
+    position: fixed;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--soft-border);
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    font-size: 12px;
+    color: var(--muted);
+    backdrop-filter: blur(8px);
+    display: none;
+    z-index: 100;
+    font-weight: 500;
+  }
+
+  .score-float.visible { display: block; }
+
+  /* Results */
+  .result-section { animation: slideUp 0.6s ease both; }
+
+  .result-meter {
+    background: var(--card-bg);
+    border: 1px solid var(--soft-border);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    backdrop-filter: blur(12px);
+  }
+
+  .result-emoji {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    display: block;
+    animation: bounce 0.8s ease both 0.3s;
+  }
+
+  .result-label {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 5vw, 2.6rem);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .result-percent {
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: 'Playfair Display', serif;
+    background: linear-gradient(135deg, var(--pink-deep), var(--lav-deep));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .result-desc {
+    color: var(--muted);
+    font-size: 0.95rem;
+    max-width: 420px;
+    margin: 0 auto 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* Meter bar */
+  .meter-bar-wrap {
+    background: rgba(212,150,185,0.15);
+    border-radius: 99px;
+    height: 8px;
+    overflow: visible;
+    position: relative;
+    margin: 1.5rem auto 0.5rem;
+    max-width: 360px;
+  }
+
+  .meter-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pink), var(--lavender));
+    border-radius: 99px;
+    transition: width 1s cubic-bezier(0.4,0,0.2,1);
+    position: relative;
+  }
+
+  .meter-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--pink-deep);
+    box-shadow: 0 0 0 4px rgba(214,97,138,0.2);
+  }
+
+  .meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+    margin: 0.5rem auto 0;
+    max-width: 360px;
+  }
+
+  /* Breakdown */
+  .breakdown-card {
+    background: var(--card-bg);
+    border: 1px solid var(--soft-border);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    backdrop-filter: blur(12px);
+    margin-bottom: 1rem;
+  }
+
+  .breakdown-title {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+    font-weight: 500;
+  }
+
+  .breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+  }
+
+  .breakdown-q {
+    flex: 1;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .breakdown-score {
+    font-weight: 500;
+    min-width: 44px;
+    text-align: right;
+    font-size: 13px;
+  }
+
+  .breakdown-score.pos { color: var(--pink-deep); }
+  .breakdown-score.neg { color: #a0a0b0; }
+
+  .breakdown-mini-bar {
+    width: 60px;
+    height: 3px;
+    background: rgba(212,150,185,0.2);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+
+  .breakdown-mini-fill {
+    height: 100%;
+    border-radius: 99px;
+    background: linear-gradient(90deg, var(--pink), var(--lavender));
+  }
+
+  .restart-row { text-align: center; margin-top: 2rem; }
+
+  /* Animations */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes bounce {
+    0% { transform: scale(0.5); opacity: 0; }
+    60% { transform: scale(1.15); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .hidden { display: none !important; }
+
+  /* Decorative floaties */
+  .floatie {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.2rem;
+    opacity: 0.12;
+    animation: float 8s ease-in-out infinite;
+    z-index: 0;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(8deg); }
+  }
+
+  @media (max-width: 560px) {
+    .question-card { padding: 1.8rem 1.4rem 1.5rem; }
+    .breakdown-card { padding: 1.2rem 1.2rem; }
+    .score-float { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Decorative floaties -->
+<div class="floatie" style="top:8%;left:5%;animation-delay:0s">✦</div>
+<div class="floatie" style="top:15%;right:8%;animation-delay:1.5s;font-size:0.9rem">✿</div>
+<div class="floatie" style="top:70%;left:3%;animation-delay:3s">✦</div>
+<div class="floatie" style="top:80%;right:5%;animation-delay:2s;font-size:0.8rem">✿</div>
+<div class="floatie" style="top:45%;left:2%;animation-delay:4s;font-size:0.7rem">◇</div>
+<div class="floatie" style="top:50%;right:3%;animation-delay:0.5s;font-size:0.7rem">◇</div>
+
+<!-- Floating score -->
+<div class="score-float" id="scoreFloat">Score: <span id="floatVal">0</span>%</div>
+
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header" id="headerBlock">
+    <div class="header-tag">The Definitive Assessment ✦</div>
+    <h1>Are you a<br><em>Femboy?</em></h1>
+    <p class="subtitle">A 15-question personality quiz to determine where you fall on the spectrum. Answer honestly — no judgment here.</p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-wrap hidden" id="progressWrap">
+    <div class="progress-meta">
+      <span id="qLabel">Question 1 of 15</span>
+      <span id="pctLabel">0%</span>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+  </div>
+
+  <!-- QUIZ AREA -->
+  <div id="quizArea">
+    <!-- Start screen -->
+    <div id="startScreen" class="question-card" style="text-align:center;padding:3rem 2.5rem;">
+      <div style="font-size:3rem;margin-bottom:1rem">🌸</div>
+      <p style="font-family:'Playfair Display',serif;font-size:1.3rem;margin-bottom:0.8rem;color:var(--charcoal)">15 questions · ~3 minutes</p>
+      <p style="color:var(--muted);font-size:0.9rem;line-height:1.7;margin-bottom:2rem;">Each answer adds or subtracts from your femboy percentage. Your final score determines your result. Ready?</p>
+      <button class="btn btn-primary" onclick="startQuiz()">Begin the Quiz →</button>
+    </div>
+
+    <!-- Question screen -->
+    <div id="questionScreen" class="hidden">
+      <div class="question-card">
+        <div class="q-number" id="qNumber">Question 1</div>
+        <div class="q-text" id="qText">Loading...</div>
+        <div class="options" id="optionsList"></div>
+      </div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="backBtn" onclick="goBack()" disabled>← Back</button>
+        <button class="btn btn-primary" id="nextBtn" onclick="goNext()" disabled>Next →</button>
+      </div>
+    </div>
+
+    <!-- Results screen -->
+    <div id="resultScreen" class="hidden result-section">
+      <div class="result-meter">
+        <span class="result-emoji" id="resultEmoji">🌸</span>
+        <div class="result-label" id="resultLabel">Calculating...</div>
+        <span class="result-percent" id="resultPercent">0%</span>
+        <div class="meter-bar-wrap">
+          <div class="meter-bar-fill" id="meterFill" style="width:0%"></div>
+        </div>
+        <div class="meter-labels"><span>0% — Not at all</span><span>100% — Absolutely</span></div>
+        <p class="result-desc" id="resultDesc" style="margin-top:1.5rem"></p>
+      </div>
+      <div class="breakdown-card">
+        <div class="breakdown-title">Score breakdown</div>
+        <div id="breakdownList"></div>
+      </div>
+      <div class="restart-row">
+        <button class="btn btn-primary" onclick="restartQuiz()">Retake Quiz ✦</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const QUESTIONS = [
+  {
+    text: "How do you feel about wearing skirts or feminine clothing?",
+    options: [
+      { text: "I love it and wear them often", score: 18 },
+      { text: "I'd totally try it — sounds fun!", score: 12 },
+      { text: "Maybe in private, but not publicly", score: 5 },
+      { text: "Not really my thing", score: -5 },
+      { text: "Absolutely not, never", score: -12 }
+    ]
+  },
+  {
+    text: "What's your relationship with skincare and beauty routines?",
+    options: [
+      { text: "Multi-step routine, I'm invested", score: 15 },
+      { text: "I like looking good — moisturizer daily", score: 8 },
+      { text: "Basic soap and water person", score: -3 },
+      { text: "I actively avoid anything like that", score: -10 }
+    ]
+  },
+  {
+    text: "Pick the outfit vibe you're most drawn to:",
+    options: [
+      { text: "Pastel, cute, soft — thigh highs included", score: 20 },
+      { text: "Oversized but androgynous and cool", score: 8 },
+      { text: "Classic menswear, clean and sharp", score: -5 },
+      { text: "Sporty, functional, nothing fancy", score: -8 }
+    ]
+  },
+  {
+    text: "How do you feel about the concept of being 'cute' vs 'handsome'?",
+    options: [
+      { text: "Cute is the highest compliment, actually", score: 18 },
+      { text: "Both are great — I'll take cute", score: 10 },
+      { text: "Prefer handsome but either works", score: -2 },
+      { text: "Handsome, masculine — that's me", score: -12 }
+    ]
+  },
+  {
+    text: "Your friend is buying animal-ear headbands. You:",
+    options: [
+      { text: "Already own three pairs, different colours", score: 20 },
+      { text: "Ask them to grab you one too", score: 14 },
+      { text: "Think they look cute on others but not for me", score: 2 },
+      { text: "Don't see the appeal at all", score: -8 }
+    ]
+  },
+  {
+    text: "How comfortable are you with your own femininity (regardless of gender)?",
+    options: [
+      { text: "Very — I actively embrace it", score: 18 },
+      { text: "Comfortable, it's a part of me", score: 10 },
+      { text: "Somewhat — I'm still figuring things out", score: 4 },
+      { text: "Not comfortable with it at all", score: -10 }
+    ]
+  },
+  {
+    text: "Pick the media you'd most enjoy:",
+    options: [
+      { text: "Cute anime with soft art styles", score: 14 },
+      { text: "K-dramas and rom-coms", score: 8 },
+      { text: "Action blockbusters and sports docs", score: -5 },
+      { text: "Dark gritty dramas, crime, war films", score: -10 }
+    ]
+  },
+  {
+    text: "Someone calls you 'girly' — your reaction?",
+    options: [
+      { text: "Honestly? That's a compliment", score: 18 },
+      { text: "I laugh and say 'thank you'", score: 10 },
+      { text: "It's a bit awkward but I don't mind", score: 2 },
+      { text: "I'd correct them immediately", score: -12 }
+    ]
+  },
+  {
+    text: "Your preferred colour palette is:",
+    options: [
+      { text: "Pastels — pink, lilac, baby blue", score: 15 },
+      { text: "Soft neutrals and warm earth tones", score: 5 },
+      { text: "Bold, saturated classics", score: -2 },
+      { text: "Black, grey, dark — minimal", score: -8 }
+    ]
+  },
+  {
+    text: "How do you feel about thigh-high socks or stockings?",
+    options: [
+      { text: "Iconic. I own several pairs.", score: 22 },
+      { text: "I think they look really good and I'm curious", score: 12 },
+      { text: "Looks great on others, not for me", score: 0 },
+      { text: "Not something I'd ever consider", score: -8 }
+    ]
+  },
+  {
+    text: "What's your typical personality vibe?",
+    options: [
+      { text: "Sweet, soft, playful, a little shy", score: 16 },
+      { text: "Cheerful and open, a bit dramatic", score: 8 },
+      { text: "Calm, stoic, hard to read", score: -4 },
+      { text: "Assertive, confident, traditionally 'alpha'", score: -12 }
+    ]
+  },
+  {
+    text: "If you could rock any makeup look:",
+    options: [
+      { text: "Full glam — blush, liner, the works", score: 18 },
+      { text: "Subtle: some tinted lip balm, maybe eyeliner", score: 10 },
+      { text: "Nothing — makeup isn't for me", score: -5 },
+      { text: "The thought makes me uncomfortable", score: -12 }
+    ]
+  },
+  {
+    text: "When shopping, you gravitate toward:",
+    options: [
+      { text: "Women's section — better cuts and more fun", score: 20 },
+      { text: "Whatever fits my aesthetic, no section rules", score: 10 },
+      { text: "Strictly the men's section", score: -8 },
+      { text: "I don't really enjoy shopping", score: -4 }
+    ]
+  },
+  {
+    text: "Your ideal 'cozy day in' involves:",
+    options: [
+      { text: "Soft pyjamas, plushies, comfort anime", score: 16 },
+      { text: "Journaling, a face mask, good music", score: 10 },
+      { text: "Gaming or working on a project", score: 2 },
+      { text: "Hitting the gym or outdoor activity", score: -8 }
+    ]
+  },
+  {
+    text: "Be honest — have you ever thought 'I wish I could pull that off' about a feminine look?",
+    options: [
+      { text: "Yes, frequently — I want to try everything", score: 20 },
+      { text: "Occasionally, definitely crossed my mind", score: 10 },
+      { text: "Once or twice, maybe", score: 3 },
+      { text: "Genuinely never", score: -8 }
+    ]
+  }
+];
+
+const RESULTS = [
+  {
+    min: -Infinity, max: 10,
+    emoji: "💪",
+    label: "Definitely Not a Femboy",
+    desc: "You lean strongly toward traditional masculinity and don't connect with femboy aesthetics or vibes. That's totally valid — there's no wrong way to be yourself."
+  },
+  {
+    min: 10, max: 25,
+    emoji: "🌿",
+    label: "Not Really a Femboy",
+    desc: "You're pretty far from femboy territory, though you might have one or two soft tendencies. You're comfortable with who you are and that's what matters."
+  },
+  {
+    min: 25, max: 40,
+    emoji: "🌻",
+    label: "Femboy-Curious",
+    desc: "You've got a few femboy tendencies sneaking through! You're open-minded and curious. Maybe there's a soft side you're still exploring."
+  },
+  {
+    min: 40, max: 55,
+    emoji: "🌸",
+    label: "Somewhere in the Middle",
+    desc: "You're a wonderful blend — masculine and feminine energies balanced. You pick and choose what resonates with you, and the femboy aesthetic clearly appeals on some level."
+  },
+  {
+    min: 55, max: 70,
+    emoji: "✨",
+    label: "Femboy-Adjacent",
+    desc: "You're giving strong femboy energy! You embrace softness, cute aesthetics, and feminine vibes. You might not call yourself a femboy, but you're definitely in the neighbourhood."
+  },
+  {
+    min: 70, max: 85,
+    emoji: "🎀",
+    label: "Pretty Much a Femboy",
+    desc: "You are, for all intents and purposes, a femboy. You love feminine aesthetics, embrace softness, and feel comfortable defying gender norms. Wear that skirt with confidence."
+  },
+  {
+    min: 85, max: Infinity,
+    emoji: "💖",
+    label: "Certified Femboy ✦",
+    desc: "Congratulations — you are an absolute, undeniable femboy. The thigh highs, the soft aesthetic, the cute vibes — it's all you. Embrace it fully. You're iconic."
+  }
+];
+
+let currentQ = 0;
+let answers = new Array(QUESTIONS.length).fill(null);
+
+function startQuiz() {
+  document.getElementById('startScreen').classList.add('hidden');
+  document.getElementById('questionScreen').classList.remove('hidden');
+  document.getElementById('progressWrap').classList.remove('hidden');
+  document.getElementById('scoreFloat').classList.add('visible');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = QUESTIONS[currentQ];
+  document.getElementById('qNumber').textContent = `Question ${currentQ + 1}`;
+  document.getElementById('qLabel').textContent = `Question ${currentQ + 1} of ${QUESTIONS.length}`;
+  document.getElementById('qText').textContent = q.text;
+
+  const letters = ['A', 'B', 'C', 'D', 'E'];
+  const list = document.getElementById('optionsList');
+  list.innerHTML = '';
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn' + (answers[currentQ] === i ? ' selected' : '');
+    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt.text}</span>`;
+    btn.onclick = () => selectOption(i);
+    list.appendChild(btn);
+  });
+
+  const pct = Math.round((currentQ / QUESTIONS.length) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('pctLabel').textContent = pct + '%';
+
+  document.getElementById('backBtn').disabled = currentQ === 0;
+  document.getElementById('nextBtn').disabled = answers[currentQ] === null;
+  document.getElementById('nextBtn').textContent = currentQ === QUESTIONS.length - 1 ? 'See Results ✦' : 'Next →';
+
+  updateFloatScore();
+}
+
+function selectOption(i) {
+  answers[currentQ] = i;
+  document.querySelectorAll('.option-btn').forEach((b, idx) => {
+    b.classList.toggle('selected', idx === i);
+  });
+  document.getElementById('nextBtn').disabled = false;
+  updateFloatScore();
+}
+
+function goNext() {
+  if (answers[currentQ] === null) return;
+  if (currentQ === QUESTIONS.length - 1) {
+    showResults();
+  } else {
+    currentQ++;
+    animateCard();
+    renderQuestion();
+  }
+}
+
+function goBack() {
+  if (currentQ === 0) return;
+  currentQ--;
+  animateCard();
+  renderQuestion();
+}
+
+function animateCard() {
+  const card = document.querySelector('.question-card');
+  card.style.animation = 'none';
+  void card.offsetWidth;
+  card.style.animation = 'slideUp 0.35s cubic-bezier(0.4,0,0.2,1) both';
+}
+
+function computeRawScore() {
+  let total = 0;
+  answers.forEach((ans, qi) => {
+    if (ans !== null) total += QUESTIONS[qi].options[ans].score;
+  });
+  return total;
+}
+
+function rawToPercent(raw) {
+  const maxPossible = QUESTIONS.reduce((s, q) => s + Math.max(...q.options.map(o => o.score)), 0);
+  const minPossible = QUESTIONS.reduce((s, q) => s + Math.min(...q.options.map(o => o.score)), 0);
+  const pct = ((raw - minPossible) / (maxPossible - minPossible)) * 100;
+  return Math.max(0, Math.min(100, Math.round(pct)));
+}
+
+function updateFloatScore() {
+  const raw = computeRawScore();
+  const pct = rawToPercent(raw);
+  document.getElementById('floatVal').textContent = pct;
+}
+
+function showResults() {
+  document.getElementById('questionScreen').classList.add('hidden');
+  document.getElementById('progressWrap').classList.add('hidden');
+  document.getElementById('headerBlock').classList.add('hidden');
+  document.getElementById('resultScreen').classList.remove('hidden');
+
+  const raw = computeRawScore();
+  const pct = rawToPercent(raw);
+  const result = RESULTS.find(r => pct >= r.min && pct < r.max) || RESULTS[RESULTS.length - 1];
+
+  document.getElementById('resultEmoji').textContent = result.emoji;
+  document.getElementById('resultLabel').textContent = result.label;
+  document.getElementById('resultPercent').textContent = pct + '%';
+  document.getElementById('resultDesc').textContent = result.desc;
+
+  setTimeout(() => {
+    document.getElementById('meterFill').style.width = pct + '%';
+  }, 200);
+
+  document.getElementById('progressFill').style.width = '100%';
+  document.getElementById('pctLabel').textContent = '100%';
+
+  // Breakdown
+  const bList = document.getElementById('breakdownList');
+  bList.innerHTML = '';
+  answers.forEach((ans, qi) => {
+    const score = QUESTIONS[qi].options[ans].score;
+    const maxS = Math.max(...QUESTIONS[qi].options.map(o => o.score));
+    const fillPct = Math.max(0, Math.min(100, ((score - Math.min(...QUESTIONS[qi].options.map(o=>o.score))) / (maxS - Math.min(...QUESTIONS[qi].options.map(o=>o.score)))) * 100));
+    const shortQ = QUESTIONS[qi].text.length > 55 ? QUESTIONS[qi].text.slice(0, 52) + '…' : QUESTIONS[qi].text;
+    const row = document.createElement('div');
+    row.className = 'breakdown-item';
+    row.innerHTML = `
+      <span class="breakdown-q">${shortQ}</span>
+      <div class="breakdown-mini-bar"><div class="breakdown-mini-fill" style="width:${fillPct}%"></div></div>
+      <span class="breakdown-score ${score >= 0 ? 'pos' : 'neg'}">${score >= 0 ? '+' : ''}${score}</span>
+    `;
+    bList.appendChild(row);
+  });
+
+  document.getElementById('scoreFloat').classList.remove('visible');
+}
+
+function restartQuiz() {
+  currentQ = 0;
+  answers = new Array(QUESTIONS.length).fill(null);
+  document.getElementById('resultScreen').classList.add('hidden');
+  document.getElementById('headerBlock').classList.remove('hidden');
+  document.getElementById('questionScreen').classList.remove('hidden');
+  document.getElementById('progressWrap').classList.remove('hidden');
+  document.getElementById('scoreFloat').classList.add('visible');
+  renderQuestion();
+}
+</script>
+</body>
+</html>
