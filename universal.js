@@ -5,10 +5,10 @@ async function updateRepoDate() {
         const d = await r.json();
         const date = new Date(d.updated_at); // or d.pushed_at if you want last push
         const txt = date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
-        document.getElementById('update-info').textContent = `(Last updated: ${txt})`;
+        document.getElementById('update-info').textContent = `(Last updated: ${txt} (not accurate anymore))`;
     } catch (e) {
         console.error(e);
-        document.getElementById('update-info').textContent = 'Failed to fetch update date (try using a vpn)';
+        document.getElementById('update-info').textContent = 'Failed to fetch update date';
     }
 }
 window.addEventListener('load', updateRepoDate);

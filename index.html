@@ -6,82 +6,833 @@
   <title>moonlight.cc</title>
   <meta name="description" content="Best roblox external. Zero injection. Pure external C++. Byfron undetected." />
   <meta name="theme-color" content="#0055ff" />
-  
-  <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/logo.png" type="image/png" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9874246941860477"
-     crossorigin="anonymous"></script>
-  <script src="universal.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:      #050508;
+      --surface: #0b0b14;
+      --border:  #141428;
+      --accent:  #2255ff;
+      --glow:    #4488ff;
+      --text:    #c8d4ff;
+      --muted:   #5566aa;
+      --white:   #eef2ff;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Mono', monospace;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .loader {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .loader-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      animation: spin 2s linear infinite;
+      filter: drop-shadow(0 0 12px rgba(34,85,255,0.7));
+    }
+    .loader-bar {
+      width: 160px;
+      height: 2px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: var(--glow);
+      animation: loaderFill 1.2s ease forwards;
+      box-shadow: 0 0 10px var(--glow);
+    }
+    @keyframes spin { 0%{transform:rotate(0deg)} 100%{transform:rotate(360deg)} }
+    @keyframes loaderFill { from{width:0%} to{width:100%} }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, backdrop-filter 0.3s;
+    }
+    header.scrolled {
+      background: rgba(5,5,8,0.85);
+      border-color: var(--border);
+      backdrop-filter: blur(20px);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: drop-shadow(0 0 8px rgba(34,85,255,0.6));
+    }
+    nav { display: flex; align-items: center; gap: 8px; }
+    .nav-link {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+    }
+    .nav-link:hover { color: var(--white); border-color: var(--glow); background: rgba(34,85,255,0.08); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 80px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(34,85,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,85,255,0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 400px;
+      background: radial-gradient(ellipse, rgba(34,85,255,0.18) 0%, transparent 70%);
+      pointer-events: none;
+      filter: blur(40px);
+    }
+    .hero-logo {
+      width: 90px;
+      height: 90px;
+      object-fit: contain;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 0 20px rgba(34,85,255,0.5));
+      animation: fadeUp 0.8s ease both;
+    }
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid rgba(34,85,255,0.4);
+      border-radius: 99px;
+      font-size: 0.72rem;
+      color: var(--glow);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      background: rgba(34,85,255,0.06);
+      animation: fadeUp 0.8s 0.05s ease both;
+    }
+    .hero-tag-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--glow);
+      box-shadow: 0 0 6px var(--glow);
+      animation: blink 1.5s ease infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+    .hero-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 0.9;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+    .hero-title span {
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(68,136,255,0.5);
+    }
+    .hero-sub {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      font-weight: 700;
+      color: var(--glow);
+      letter-spacing: -0.02em;
+      margin-bottom: 28px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-desc {
+      max-width: 500px;
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 44px;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 60px;
+      animation: fadeUp 0.8s 0.4s ease both;
+    }
+    .btn-dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-dl::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .btn-dl:hover {
+      background: #3366ff;
+      box-shadow: 0 0 30px rgba(34,85,255,0.5), 0 8px 20px rgba(0,0,0,0.4);
+      transform: translateY(-2px);
+    }
+    .btn-dc {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--text);
+      font-family: 'Space Mono', monospace;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.22s;
+    }
+    .btn-dc:hover {
+      border-color: var(--muted);
+      color: var(--white);
+      background: rgba(255,255,255,0.03);
+      transform: translateY(-2px);
+    }
+    .update-badge {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      animation: fadeUp 0.8s 0.5s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(20px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      max-width: 780px;
+      padding: 0 20px;
+      margin: 0 auto 100px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      position: relative;
+      z-index: 1;
+    }
+    .stat {
+      background: var(--surface);
+      padding: 32px 20px;
+      text-align: center;
+      transition: background 0.2s;
+    }
+    .stat:hover { background: #0e0e1c; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-num span { color: var(--glow); }
+    .stat-lbl {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .features {
+      max-width: 900px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+    }
+    .section-label {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--glow);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 60px;
+      line-height: 1.05;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .feature-card {
+      background: var(--surface);
+      padding: 36px 30px;
+      transition: background 0.2s;
+    }
+    .feature-card:hover { background: #0e0e1c; }
+    .feature-icon { font-size: 1.5rem; margin-bottom: 18px; display: block; }
+    .feature-name {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+    .feature-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.8; }
+
+    .cta-section {
+      max-width: 800px;
+      margin: 0 auto 100px;
+      padding: 0 20px;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+    .cta-box {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 70px 40px;
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%; transform: translateX(-50%);
+      width: 60%; height: 1px;
+      background: linear-gradient(90deg, transparent, var(--glow), transparent);
+    }
+    .cta-glow {
+      position: absolute;
+      top: -50%; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 300px;
+      background: radial-gradient(ellipse, rgba(34,85,255,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-box h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.04em;
+      margin-bottom: 16px;
+      position: relative;
+    }
+    .cta-box p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 36px;
+      position: relative;
+    }
+    .cta-box .hero-actions { position: relative; }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: var(--muted);
+      position: relative;
+      z-index: 1;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      .stats { grid-template-columns: 1fr; }
+      .hero-actions { flex-direction: column; align-items: center; }
+      .btn-dl, .btn-dc { width: 100%; max-width: 280px; justify-content: center; }
+      footer { justify-content: center; text-align: center; }
+    }
+  </style>
 </head>
 <body>
 
-  <div class="loader-wrapper">
-    <div class="loader">
-      <img src="assets/logo.png" alt="Moonlight">
+  <div class="loader" id="loader">
+    <div class="loader-inner">
+      <img src="assets/logo.png" alt="Moonlight" class="loader-logo">
+      <div class="loader-bar"><div class="loader-bar-fill"></div></div>
     </div>
   </div>
 
-  <header class="header">
-    <nav class="navbar">
-      <div class="logo">
-        <img src="assets/logo.png" alt="Moonlight">
-        <span>moonlight.cc</span>
-      </div>
-      <div class="hamburger">
-        <span></span><span></span><span></span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="https://moonlightrblx.github.io/discord" target="_blank">Discord</a></li>
-      </ul>
+  <header id="header">
+    <a class="logo" href="#">
+      <img src="assets/logo.png" alt="Moonlight">
+      moonlight.cc
+    </a>
+    <nav>
+      <a class="nav-link" href="https://moonlightrblx.github.io/discord" target="_blank">Discord ↗</a>
     </nav>
   </header>
 
   <section class="hero">
-    <img src="assets/logo.png" alt="Moonlight Logo" class="logo-img">
-    <h1 class="title-main">moonlight.cc</h1>
-    <p class="tagline">External Cheat • Byfron Undetected</p>
-    <p>
-      Best roblox external. Zero injection. Pure external C++.
-    </p>
-    <div class="btn-group">
-      <a href="https://bstlar.com/4TZ/skibidi-toliet" class="btn btn-primary">Download Free</a>
-      <a href="https://moonlightrblx.github.io/discord" class="btn btn-secondary">Join Discord</a>
+    <div class="hero-glow"></div>
+    <img src="assets/logo.png" alt="Moonlight" class="hero-logo">
+    <div class="hero-tag">
+      <span class="hero-tag-dot"></span>
+      <span class="hero-tag-text"> 3.11 BETA</span>
+      <span class="hero-tag-dot"></span>
     </div>
-    <span id="update-info">(Loading...)</span>
+    <h1 class="hero-title">moonlight<span>.cc</span></h1>
+    <p class="hero-sub">Best Roblox External</p>
+    <p class="hero-desc">Zero injection. Pure external C++. Updated daily with new bypasses. Byfron undetected.</p>
+    <div class="hero-actions">
+      <a href="https://bstlar.com/4TZ/skibidi-toliet" class="btn-dl">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download
+      </a>
+      <a href="https://moonlightrblx.github.io/discord" class="btn-dc" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03z"/></svg>
+        Join Discord
+      </a>
+    </div>
+    <p class="update-badge" id="update-info">update checking is not availabile at this time</p>
   </section>
 
   <div class="stats">
-    <div class="stat-box">
-      <div class="stat-number">300+</div>
-      <div class="stat-label">Cheaters Using</div>
+    <div class="stat">
+      <div class="stat-num">600<span>+</span></div>
+      <div class="stat-lbl">Active Users</div>
     </div>
-    <div class="stat-box">
-      <div class="stat-number">100%</div>
-      <div class="stat-label">External / Undetected</div>
+    <div class="stat">
+      <div class="stat-num">100<span>%</span></div>
+      <div class="stat-lbl">External / Undetected</div>
     </div>
-    <div class="stat-box">
-      <div class="stat-number">24/7</div>
-      <div class="stat-label">Discord Updates</div>
+    <div class="stat">
+      <div class="stat-num">24<span>/7</span></div>
+      <div class="stat-lbl">Discord Updates</div>
     </div>
   </div>
 
-  <section class="announce">
-    <h2>Dominate Roblox Now</h2>
-    <p>
-      Every shooter/PvP. All games. One external.<br>
-      Updated daily with new features and bypasses.
-    </p>
-    <div class="btn-group">
-      <a href="https://bstlar.com/4TZ/skibidi-toliet" class="btn btn-primary">Download Moonlight</a>
-      <a href="https://moonlightrblx.github.io/discord" class="btn btn-secondary">Join Discord</a>
+  <section class="features">
+    <p class="section-label">// Why Moonlight</p>
+    <h2 class="section-title">Built different.<br>Runs different.</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🛡️</span>
+        <p class="feature-name">Fully External</p>
+        <p class="feature-desc">Runs completely outside the Roblox process. Byfron can't touch it.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <p class="feature-name">Daily Updates</p>
+        <p class="feature-desc">Bypasses refreshed daily. New features pushed directly through our cdn.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <p class="feature-name">All PvP Games</p>
+        <p class="feature-desc">Works across every Roblox shooter and PvP title. Aimbot, ESP, and more.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💻</span>
+        <p class="feature-name">Made for the user</p>
+        <p class="feature-desc">We don't want to make you pay for something you don't need to pay for.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🆓</span>
+        <p class="feature-name">Free Forever</p>
+        <p class="feature-desc">No subscriptions. No hidden fees. Download once and you're in.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">💬</span>
+        <p class="feature-name">Active Community</p>
+        <p class="feature-desc">600+ members in Discord. Support, questions and updates all in one place.</p>
+      </div>
     </div>
   </section>
 
-  <footer class="footer">
-    <p>© 2026 Moonlight.cc • <a href="https://moonlightrblx.github.io/">moonlight.dev</a></p>
+  <section class="cta-section">
+    <div class="cta-box">
+      <div class="cta-glow"></div>
+      <h2>Dominate. Now.</h2>
+      <p>Every shooter. All games. One external.<br>Updated daily. Free forever.</p>
+      <div class="hero-actions">
+        <a href="https://bstlar.com/4TZ/skibidi-toliet" class="btn-dl">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+        <a href="https://moonlightrblx.github.io/discord" class="btn-dc" target="_blank">Join Discord</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 moonlight.cc</span>
+    <a href="https://moonlightrblx.github.io/" target="_blank">moonlight.dev ↗</a>
   </footer>
 
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').classList.add('hidden');
+      }, 1400);
+    });
+
+    window.addEventListener('scroll', () => {
+      document.getElementById('header').classList.toggle('scrolled', scrollY > 20);
+    });
+(function() {
+    'use strict';
+    
+    function addAdvancedProtection() {
+        const originalConsole = window.console;
+        const noop = function() {};
+        
+        Object.defineProperty(window, 'console', {
+            get: function() {
+                return {
+                    log: noop,
+                    warn: noop,
+                    error: noop,
+                    info: noop,
+                    debug: noop,
+                    trace: noop,
+                    table: noop,
+                    group: noop,
+                    groupEnd: noop,
+                    time: noop,
+                    timeEnd: noop,
+                    count: noop,
+                    clear: noop
+                };
+            },
+            set: function() {}
+        });
+        
+      
+        
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'C') ||
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.key === 'u') ||
+                (e.ctrlKey && e.key === 'U') ||
+                (e.ctrlKey && e.key === 's') ||
+                (e.ctrlKey && e.key === 'S') ||
+                (e.ctrlKey && e.key === 'a') ||
+                (e.ctrlKey && e.key === 'A') ||
+                (e.ctrlKey && e.key === 'p') ||
+                (e.ctrlKey && e.key === 'P')) {
+                e.preventDefault();
+                e.stopPropagation();
+                return false;
+            }
+        });
+        
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        document.addEventListener('dragstart', function(e) {
+            e.preventDefault();
+            return false;
+        });
+        
+        Object.defineProperty(document, 'oncontextmenu', {
+            get: function() { return null; },
+            set: function() {}
+        });
+        
+        Object.defineProperty(document, 'onselectstart', {
+            get: function() { return null; },
+            set: function() {}
+        });
+        
+        Object.defineProperty(document, 'ondragstart', {
+            get: function() { return null; },
+            set: function() {}
+        });
+    }
+    
+    function detectAdvancedBots() {
+        const botSignatures = [
+            'selenium',
+            'phantom',
+            'headless',
+            'puppeteer',
+            'playwright',
+            'webdriver',
+            'automation',
+            'bot',
+            'crawler',
+            'spider'
+        ];
+        
+        const userAgent = navigator.userAgent.toLowerCase();
+        const botDetected = botSignatures.some(signature => userAgent.includes(signature));
+        
+        if (botDetected) {
+            return true;
+        }
+        
+        if (navigator.webdriver === true) {
+            return true;
+        }
+        
+        if (window.callPhantom || window._phantom || window.__phantom) {
+            return true;
+        }
+        
+        if (window.chrome && window.chrome.runtime && window.chrome.runtime.onConnect) {
+            return false;
+        }
+        
+        if (navigator.plugins.length === 0 && navigator.languages.length === 0) {
+            return true;
+        }
+        
+        return false;
+    }
+    
+    function generateMassiveJunkData() {
+        const junkArrays = [];
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?';
+        
+        for (let i = 0; i < 1000; i++) {
+            const junkArray = [];
+            for (let j = 0; j < 10000; j++) {
+                let junkString = '';
+                for (let k = 0; k < 50; k++) {
+                    junkString += chars.charAt(Math.floor(Math.random() * chars.length));
+                }
+                junkArray.push(junkString);
+            }
+            junkArrays.push(junkArray);
+        }
+        
+        return junkArrays;
+    }
+    
+    function infiniteJunkDataLoading() {
+        const junkData = generateMassiveJunkData();
+        let counter = 0;
+        
+        const junkInterval = setInterval(function() {
+            const junkElement = document.createElement('div');
+            junkElement.style.display = 'none';
+            junkElement.innerHTML = junkData[counter % junkData.length].join('');
+            document.body.appendChild(junkElement);
+            
+            counter++;
+            
+            if (counter > 10000000) {
+                counter = 0;
+            }
+        }, 0.1);
+        
+        return junkInterval;
+    }
+    
+    function createAdvancedHoneypots() {
+        const honeypots = [];
+        
+        for (let i = 0; i < 10; i++) {
+            const honeypot = document.createElement('div');
+            honeypot.style.position = 'absolute';
+            honeypot.style.left = '-9999px';
+            honeypot.style.top = '-9999px';
+            honeypot.style.width = '1px';
+            honeypot.style.height = '1px';
+            honeypot.style.opacity = '0';
+            honeypot.innerHTML = `
+                <input type="text" name="email_${i}" value="" style="display:none;">
+                <input type="text" name="phone_${i}" value="" style="display:none;">
+                <input type="text" name="address_${i}" value="" style="display:none;">
+                <input type="text" name="creditcard_${i}" value="" style="display:none;">
+            `;
+            document.body.appendChild(honeypot);
+            honeypots.push(honeypot);
+        }
+        
+        honeypots.forEach(honeypot => {
+            const inputs = honeypot.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#000;color:#fff;font-family:Arial,sans-serif;"><h1>ðŸ¤– Advanced Bot Detected - Access Denied</h1></div>';
+                    window.location.href = 'about:blank';
+                });
+                
+                input.addEventListener('input', function() {
+                    document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#000;color:#fff;font-family:Arial,sans-serif;"><h1>ðŸ¤– Bot Interaction Detected - Access Denied</h1></div>';
+                    window.location.href = 'about:blank';
+                });
+            });
+        });
+    }
+    
+    function monitorBehavioralPatterns() {
+        let mouseMovements = 0;
+        let keyPresses = 0;
+        let scrollEvents = 0;
+        let clickEvents = 0;
+        let startTime = Date.now();
+        
+        document.addEventListener('mousemove', function() {
+            mouseMovements++;
+        });
+        
+        document.addEventListener('keydown', function() {
+            keyPresses++;
+        });
+        
+        document.addEventListener('scroll', function() {
+            scrollEvents++;
+        });
+        
+        document.addEventListener('click', function() {
+            clickEvents++;
+        });
+        
+        setTimeout(function() {
+            const timeElapsed = Date.now() - startTime;
+            
+            if (timeElapsed > 8000 && mouseMovements < 10 && keyPresses < 3 && scrollEvents < 3 && clickEvents < 2) {
+                infiniteJunkDataLoading();
+            }
+        }, 15000);
+    }
+    
+    function initAdvancedBotProtection() {
+        if (detectAdvancedBots()) {
+            document.body.innerHTML = '<div style="display:flex;align-items:center;justify-content:center;height:100vh;background:#000;color:#fff;font-family:Arial,sans-serif;"><h1>ðŸ¤– Advanced Bot Detected - Access Denied</h1></div>';
+            window.location.href = 'about:blank';
+            return;
+        }
+        
+        createAdvancedHoneypots();
+        monitorBehavioralPatterns();
+        
+        setTimeout(function() {
+            if (detectAdvancedBots()) {
+                infiniteJunkDataLoading();
+            }
+        }, 3000);
+    }
+    
+    addAdvancedProtection();
+    initAdvancedBotProtection();
+})();
+
+
+    // document.getElementById('update-info').textContent = 'v2.4.1 — Updated today';
+  </script>
 </body>
 </html>
