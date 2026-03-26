@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>koneko ga daisuki :3</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22></text></svg>">
+</head>
+<body>
+    <div class="snow-container">
+        <div class="snow"></div>
+        <div class="snow"></div>
+        <div class="snow"></div>
+        <div class="snow"></div>
+        <div class="snow"></div>
+    </div>
+    
+    <div class="fog"></div>
+    
+    <div class="container">
+        <div class="discord-widget">
+            <div class="widget-header">
+                <i class="fab fa-discord"></i>
+                <span>Discord Status</span>
+            </div>
+            <div class="discord-profile">
+                <div class="avatar-container">
+                    <img id="discord-avatar" src="" alt="Discord Avatar" class="discord-avatar">
+                    <div class="status-indicator" id="discord-status"></div>
+                </div>
+                <div class="discord-info">
+                    <span class="discord-username" id="discord-username">Loading...</span>
+                    <div class="discord-activity-frame">
+                        <div class="activity-content">
+                            <div class="activity-details" id="discord-activity">
+                                <span class="activity-text">Offline</span>
+                            </div>
+                            <div class="activity-image-container">
+                                <img id="activity-image" src="" alt="Activity" class="activity-image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="spotify-widget">
+            <div class="widget-header">
+                <i class="fab fa-spotify"></i>
+                <span>Now Playing</span>
+            </div>
+            <div class="spotify-content" id="spotify-content">
+                <div class="track-info">
+                    <span class="track-name" id="spotify-track">Not playing</span>
+                    <span class="artist-name" id="spotify-artist">-</span>
+                </div>
+                <div class="album-art">
+                    <img id="spotify-album" src="" alt="Album Art">
+                </div>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="profile">
+                <div class="profile-img-container">
+                    <img id="main-avatar" src="" alt="c" class="profile-img">
+                    <div class="frost-overlay"></div>
+                </div>
+                <h1 class="username">
+                    <span class="name-text">𝓵𝓲𝓿 <3</span>
+                </h1>
+                <p class="bio">
+                    <span class="typing-text">made by @𝓵𝓲𝓿 <3</span>
+                    <span class="cursor-blink">_</span>
+                </p>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-link discord-link" id="discord-social-link" data-tooltip="Discord">
+                    <i class="fab fa-discord"></i>
+                    <span>Discord</span>
+                    <div class="frost-effect"></div>
+                </a>
+                
+           
+       
+    
+            </div>
+            
+            <div class="footer">
+                <p>she/her </p>
+                <div class="last-seen">
+                    <i class="fas fa-clock"></i>
+                    <span id="last-seen">Last seen: calculating...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="cursor"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>

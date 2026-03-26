@@ -1,0 +1,886 @@
+:root {
+    --bg-primary: #0d0d0d;
+    --bg-secondary: #1a1a1a;
+    --card-bg: rgba(20, 20, 20, 0.95);
+    --text-primary: #e8e8e8;
+    --text-secondary: #a0a0a0;
+    --text-muted: #666666;
+    --accent-ice: #cc9bd6;
+    --accent-frost: #cc9bd6;
+    --accent-snow: #570052;
+    --accent-dark: #2c2c2c;
+    --border-color: rgba(212, 0, 255, 0.2);
+    --shadow-color: rgba(0, 0, 0, 0.8);
+    --gradient-ice: linear-gradient(135deg, #cc9bd6, #d69bcc, rgb(255, 0, 255));
+    --gradient-frost: linear-gradient(45deg, #cc9bd6, #ff04de);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    background-image: 
+        radial-gradient(circle at 20% 80%, rgba(136, 17, 130, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(51, 3, 31, 0.1) 0%, transparent 50%);
+}
+
+.snow-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.snow {
+    position: absolute;
+    top: -10px;
+    width: 2px;
+    height: 2px;
+    background: var(--accent-snow);
+    border-radius: 50%;
+    animation: snowfall linear infinite;
+    opacity: 0.8;
+}
+
+.snow:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 0s;
+}
+
+.snow:nth-child(2) {
+    left: 30%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+    width: 3px;
+    height: 3px;
+}
+
+.snow:nth-child(3) {
+    left: 50%;
+    animation-duration: 10s;
+    animation-delay: 4s;
+}
+
+.snow:nth-child(4) {
+    left: 70%;
+    animation-duration: 15s;
+    animation-delay: 1s;
+    width: 1px;
+    height: 1px;
+}
+
+.snow:nth-child(5) {
+    left: 90%;
+    animation-duration: 9s;
+    animation-delay: 3s;
+}
+
+@keyframes snowfall {
+    0% {
+        transform: translateY(-100vh) translateX(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(100vh) translateX(100px);
+        opacity: 0;
+    }
+}
+
+.fog {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to top, rgba(184, 212, 240, 0.1), transparent);
+    z-index: -1;
+    animation: fogMove 20s ease-in-out infinite;
+}
+
+@keyframes fogMove {
+    0%, 100% { opacity: 0.1; }
+    50% { opacity: 0.3; }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.discord-widget,
+.spotify-widget {
+    position: fixed;
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 15px;
+    backdrop-filter: blur(20px);
+    z-index: 1000;
+    min-width: 250px;
+    box-shadow: 0 8px 32px var(--shadow-color);
+}
+
+.discord-widget {
+    top: 20px;
+    left: 20px;
+    animation: slideInLeft 1s ease-out;
+}
+
+.spotify-widget {
+    top: 20px;
+    right: 20px;
+    animation: slideInRight 1s ease-out;
+}
+
+.widget-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 8px;
+}
+
+.widget-header i {
+    font-size: 16px;
+}
+
+.discord-widget .widget-header i {
+    color: #7a9cc6;
+}
+
+.spotify-widget .widget-header i {
+    color: #7a9cc6;
+}
+
+.discord-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.avatar-container {
+    position: relative;
+}
+
+.discord-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color);
+}
+
+.status-indicator {
+    position: absolute;
+    bottom: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--bg-primary);
+    background: #747f8d;
+}
+
+.status-indicator.online { background: #3ba55d; }
+.status-indicator.idle { background: #faa81a; }
+.status-indicator.dnd { background: #ed4245; }
+.status-indicator.offline { background: #747f8d; }
+
+.discord-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.discord-username {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+}
+
+.discord-discriminator {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: 'Fira Code', monospace;
+}
+
+.discord-activity {
+    margin-top: 4px;
+}
+
+.activity-text {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.spotify-content {
+    display: flex;
+    align-items: center;
+    gap: 0;
+}
+
+.spotify-widget.no-music {
+    min-width: 180px;
+    padding: 12px;
+}
+
+.spotify-widget.no-music .spotify-content {
+    justify-content: center; 
+    
+}
+
+.spotify-widget.no-music .track-info {
+    text-align: center; 
+    
+}
+
+
+.spotify-widget.no-music .artist-name {
+    display: none;
+}
+
+.spotify-content .track-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.spotify-content .track-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 0; 
+}
+
+.spotify-content .artist-name {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 0; 
+    
+}
+
+.spotify-content .album-art {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    overflow: hidden;
+    display: none;
+    margin-left: 12px;
+}
+
+.spotify-content .album-art img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotify-content .track-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.spotify-content .track-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.spotify-content .artist-name {
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.progress-container {
+    width: 100%;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 4px;
+    background: var(--border-color);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 4px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #7a9cc6;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.time-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: 'Fira Code', monospace;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 400px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 20px 40px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    animation: cardEntrance 1.5s ease-out;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-ice);
+    opacity: 0.03;
+    z-index: -1;
+}
+
+@keyframes cardEntrance {
+    0% {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.profile {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-img-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.profile-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--accent-ice);
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+.frost-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, transparent 60%, rgba(184, 212, 240, 0.2) 100%);
+    pointer-events: none;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.username {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.name-text {
+    background: var(--gradient-frost);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.winter-symbol {
+    font-size: 24px;
+    animation: gentleSpin 8s linear infinite;
+}
+
+@keyframes gentleSpin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.bio {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+    font-family: 'Fira Code', monospace;
+    font-style: italic;
+}
+
+.typing-text {
+    border-right: 1px solid var(--accent-ice);
+    animation: typing 4s steps(40) infinite;
+}
+
+.cursor-blink {
+    animation: blink 1s infinite;
+    color: var(--accent-ice);
+}
+
+@keyframes typing {
+    0%, 50% { border-color: var(--accent-ice); }
+    51%, 100% { border-color: transparent; }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.social-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+}
+
+.social-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-ice);
+    transition: left 0.4s ease;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.social-link:hover::before {
+    left: 0;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(184, 212, 240, 0.2);
+    border-color: var(--accent-ice);
+}
+
+.social-link i {
+    font-size: 18px;
+    margin-right: 12px;
+    width: 20px;
+    text-align: center;
+    color: var(--accent-frost);
+}
+
+.social-link span {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.frost-effect {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(184, 212, 240, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover .frost-effect {
+    opacity: 1;
+}
+
+.footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    border-top: 1px solid var(--border-color);
+    padding-top: 20px;
+}
+
+.last-seen {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-family: 'Fira Code', monospace;
+    font-size: 11px;
+}
+
+.cursor {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent-ice);
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s;
+    mix-blend-mode: difference;
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .card {
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    .discord-widget,
+    .spotify-widget {
+        position: relative;
+        top: auto;
+        left: auto;
+        right: auto;
+        margin-bottom: 15px;
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .username {
+        font-size: 24px;
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    * {
+        cursor: auto !important;
+    }
+    
+    .cursor {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        padding: 20px;
+    }
+    
+    .username {
+        font-size: 20px;
+    }
+    
+    .social-link {
+        padding: 12px 14px;
+    }
+    
+    .social-link i {
+        font-size: 18px;
+    }
+}
+
+.discord-activity-frame {
+    margin-top: 8px;
+    background: rgba(47, 49, 54, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px;
+    backdrop-filter: blur(10px);
+}
+
+.activity-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.activity-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-text {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-style: italic;
+    line-height: 1.3;
+}
+
+.activity-image-container {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.activity-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.activity-image:not([src]), .activity-image[src=""] {
+    display: none;
+}
+
+.discord-discriminator {
+    display: none;
+}
+
+
+.discord-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.discord-username {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+
+.discord-widget {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.discord-widget:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 45px #9bb4d696, 0 32px 32px var(--shadow-color);
+    border-color: #7a9cc6;
+    background: rgba(20, 20, 20, 0.98);
+}
+
+.discord-widget:hover .discord-avatar {
+    transform: scale(1.1) rotate(5deg);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px #7a9cc6;
+}
+
+.discord-widget:hover .status-indicator {
+    transform: scale(1.2);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 10px currentColor;
+}
+
+.discord-widget:hover .discord-activity-frame {
+    background: rgba(88, 101, 242, 0.1);
+    border-color: #9bb4d696;
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.discord-widget:hover .activity-text {
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.spotify-widget {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.spotify-widget:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 45px #9bb4d696, 0 32px 32px var(--shadow-color);
+    border-color: #b8d4f0;
+    background: rgba(20, 20, 20, 0.98);
+}
+
+.spotify-widget:hover .album-art {
+    transform: scale(1.1) rotate(-3deg);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px #b8d4f0;
+
+}
+
+.spotify-widget:hover .track-name {
+    color: #7a9cc6;
+    transition: color 0.3s ease;
+    text-shadow: 0 0 10px #9bb5d6;
+
+}
+
+
+.spotify-widget:hover .progress-fill {
+    box-shadow: 0 0 10px #7a9cc6;
+    transition: box-shadow 0.3s ease;
+}
+
+.notification {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+}
+
+.notification:hover {
+    transform: translateX(-10px) scale(1.05);
+    background: rgba(0, 0, 0, 0.95);
+    border-color: var(--accent-ice);
+    box-shadow: 0 10px 30px rgba(184, 212, 240, 0.2);
+}
+
+@keyframes statusPulse {
+    0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.1);
+    }
+}
+
+.status-indicator.online:hover {
+    animation: statusPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes activityImageFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-3px) rotate(2deg);
+    }
+}
+
+.discord-widget:hover .activity-image {
+    animation: activityImageFloat 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.discord-widget:hover::before,
+.spotify-widget:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.1),
+        transparent
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s ease-in-out infinite;
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.discord-widget:hover .discord-username,
+.spotify-widget:hover .artist-name {
+    text-shadow: 0 0 10px currentColor;
+    transition: text-shadow 0.3s ease;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-2px);
+    }
+}
+
+.discord-widget:hover .widget-header i,
+.spotify-widget:hover .widget-header i {
+    animation: iconBounce 1s ease-in-out infinite;
+}
