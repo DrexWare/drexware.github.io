@@ -1,0 +1,292 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Velox - Privacy Policy</title>
+<meta name="theme-color" content="#0055ff">
+
+<link rel="icon" href="assets/logo.png" type="image/png">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+    --bg:#050508;
+    --surface:#0b0b14;
+    --border:#141428;
+    --accent:#2255ff;
+    --glow:#4488ff;
+    --text:#c8d4ff;
+    --muted:#5566aa;
+    --white:#eef2ff;
+}
+
+*,*::before,*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Space Mono',monospace;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+    overflow-x:hidden;
+}
+
+body::before{
+    content:'';
+    position:fixed;
+    inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none;
+    opacity:.6;
+}
+
+header{
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+    padding:18px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(5,5,8,.85);
+    backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-decoration:none;
+    color:var(--white);
+    font-family:'Syne',sans-serif;
+    font-weight:800;
+}
+
+.logo img{
+    width:32px;
+    height:32px;
+}
+
+.nav-link{
+    padding:8px 16px;
+    border:1px solid var(--border);
+    border-radius:6px;
+    color:var(--muted);
+    text-decoration:none;
+    transition:.2s;
+}
+
+.nav-link:hover{
+    color:var(--white);
+    border-color:var(--glow);
+}
+
+.legal-section{
+    max-width:950px;
+    margin:140px auto 80px;
+    padding:0 20px;
+    position:relative;
+    z-index:1;
+}
+
+.legal-container{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:60px;
+}
+
+.section-label{
+    display:inline-block;
+    font-size:.7rem;
+    color:var(--glow);
+    letter-spacing:.15em;
+    text-transform:uppercase;
+    margin-bottom:14px;
+}
+
+.section-title{
+    font-family:'Syne',sans-serif;
+    font-size:clamp(2.5rem,5vw,4rem);
+    font-weight:800;
+    color:var(--white);
+    letter-spacing:-0.04em;
+    margin-bottom:20px;
+}
+
+.legal-date{
+    color:var(--muted);
+    margin-bottom:40px;
+    font-size:.8rem;
+}
+
+.legal-container h2{
+    font-family:'Syne',sans-serif;
+    color:var(--white);
+    margin-top:40px;
+    margin-bottom:14px;
+    font-size:1.35rem;
+}
+
+.legal-container p{
+    line-height:1.9;
+    margin-bottom:16px;
+}
+
+.legal-container ul{
+    margin:15px 0 25px 25px;
+}
+
+.legal-container li{
+    margin-bottom:10px;
+    line-height:1.8;
+}
+
+footer{
+    border-top:1px solid var(--border);
+    padding:40px 5%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    color:var(--muted);
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+footer a{
+    text-decoration:none;
+    color:var(--muted);
+}
+
+footer a:hover{
+    color:var(--white);
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+@media(max-width:768px){
+    .legal-container{
+        padding:35px;
+    }
+
+    footer{
+        justify-content:center;
+        text-align:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <a class="logo" href="index.html">
+        <img src="assets/logo.png" alt="Velox">
+        Velox
+    </a>
+
+    <a class="nav-link" href="index.html">Home</a>
+</header>
+
+<section class="legal-section">
+    <div class="legal-container">
+
+        <p class="section-label">// Privacy</p>
+        <h1 class="section-title">Privacy Policy</h1>
+
+        <p class="legal-date">Last Updated: 6/3/26</p>
+
+        <p>
+            Velox respects your privacy and is committed to protecting
+            the information we collect.
+        </p>
+
+        <h2>Information We Collect</h2>
+
+        <p>We collect the following information:</p>
+
+        <ul>
+            <li>Discord User ID</li>
+        </ul>
+
+        <h2>How We Use Information</h2>
+
+        <p>Your information may be used for:</p>
+
+        <ul>
+            <li>License management</li>
+            <li>User authentication</li>
+            <li>Customer support</li>
+            <li>Preventing abuse and fraud</li>
+        </ul>
+
+        <h2>Information Sharing</h2>
+
+        <p>
+            We do not sell, rent, or share your personal information with
+            third parties except where required by law.
+        </p>
+
+        <h2>Data Retention</h2>
+
+        <p>
+            We retain information only as long as reasonably necessary to
+            provide our services, comply with legal obligations, and enforce
+            our agreements.
+        </p>
+
+        <h2>Data Security</h2>
+
+        <p>
+            We take reasonable measures to protect collected information from
+            unauthorized access, disclosure, or misuse.
+        </p>
+
+        <h2>Your Rights</h2>
+
+        <p>
+            Depending on your jurisdiction, you may have rights regarding
+            access to, correction of, or deletion of your personal information.
+        </p>
+
+        <h2>Policy Changes</h2>
+
+        <p>
+            We may update this Privacy Policy from time to time.
+            Continued use of Velox after changes are posted constitutes
+            acceptance of the updated policy.
+        </p>
+
+        <h2>Contact</h2>
+
+        <p>
+            Questions regarding this Privacy Policy may be sent to:
+            <strong>ellii@elliie.dev</strong>
+        </p>
+
+    </div>
+</section>
+
+<footer>
+    <span>© 2026 Velox</span>
+
+    <div class="footer-links">
+        <a href="tos.html">Terms of Service</a>
+        <a href="privacy.html">Privacy Policy</a>
+    </div>
+</footer>
+
+</body>
+</html>
+```
